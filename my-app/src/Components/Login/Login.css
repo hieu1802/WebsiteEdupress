@@ -1,0 +1,56 @@
+.login {
+  max-width: 630px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #eaeaea;
+  border-radius: 20px;
+
+  h1 {
+    margin-top: 0px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .input-group {
+      width: 100%;
+
+      #username,
+      #password {
+        width: 100%;
+        padding: 10px 16px;
+        border: 1px solid #9d9d9d;
+        border-radius: 8px;
+
+        box-sizing: border-box;
+      }
+    }
+
+    .remember-me {
+      font-weight: 400;
+      color: #555555;
+    }
+
+    button {
+      width: 100%;
+
+      padding: 10px 24px;
+      border-radius: 24px;
+      border-color: transparent;
+      background-color: #ff7822;
+      color: #fff;
+      font-size: 18px;
+      line-height: 27px;
+      font-weight: 500;
+    }
+
+    .lost-pass {
+      color: #000;
+      font-size: 18px;
+      line-height: 27px;
+      font-weight: 400;
+    }
+  }
+}
