@@ -1,4 +1,4 @@
-.login {
+.register {
   max-width: 630px;
   margin: 50px auto;
   padding: 30px;
@@ -23,7 +23,9 @@
     .input-group {
       width: 100%;
 
+      #email,
       #username,
+      #confirmPassword,
       #password {
         width: 100%;
         padding: 10px 16px;
@@ -32,11 +34,6 @@
 
         box-sizing: border-box;
       }
-    }
-
-    .remember-me {
-      font-weight: 400;
-      color: #555555;
     }
 
     button {
@@ -50,13 +47,6 @@
       font-size: 18px;
       line-height: 27px;
       font-weight: 500;
-    }
-
-    .lost-pass {
-      color: #000;
-      font-size: 18px;
-      line-height: 27px;
-      font-weight: 400;
     }
   }
 }
