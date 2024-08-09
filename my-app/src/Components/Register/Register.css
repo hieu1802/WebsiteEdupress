@@ -38,7 +38,7 @@
 
     button {
       width: 100%;
-
+      cursor: pointer;
       padding: 10px 24px;
       border-radius: 24px;
       border-color: transparent;
