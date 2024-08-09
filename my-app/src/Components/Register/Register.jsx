@@ -27,7 +27,6 @@ function Register() {
       return;
     }
 
-    // Check if passwords match
     if (password !== confirmPassword) {
       setModal({
         isOpen: true,
@@ -37,10 +36,8 @@ function Register() {
       return;
     }
 
-    // Get existing accounts from localStorage
     const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
-    // Check if the username or email is already taken
     const accountExists = existingAccounts.some(
       (account) => account.username === username || account.email === email
     );
@@ -54,7 +51,6 @@ function Register() {
       return;
     }
 
-    // Save the new account
     const newAccount = { email, username, password };
     localStorage.setItem(
       "accounts",

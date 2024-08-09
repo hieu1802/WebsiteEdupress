@@ -4,16 +4,14 @@ import "./LostPass.css";
 
 function LostPass() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
-  const [isVerified, setIsVerified] = useState(false); // To track if the user is verified
+  const [isVerified, setIsVerified] = useState(false);
   const [modal, setModal] = useState({ isOpen: false, title: "", message: "" });
 
   const handleLostPass = (e) => {
     e.preventDefault();
 
-    // Get existing accounts from localStorage
     const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
-    // Check if the username or email exists
     const accountExists = existingAccounts.some(
       (account) =>
         account.username === usernameOrEmail ||
@@ -21,10 +19,8 @@ function LostPass() {
     );
 
     if (accountExists) {
-      // User is verified, allow them to reset their password
       setIsVerified(true);
     } else {
-      // Show error if username or email does not exist
       setModal({ isOpen: true, title: "Error", message: "Account not found" });
     }
   };
@@ -39,7 +35,6 @@ function LostPass() {
       return;
     }
 
-    // Get existing accounts from localStorage
     const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
     const updatedAccounts = existingAccounts.map((account) => {
       if (
@@ -51,7 +46,6 @@ function LostPass() {
       return account;
     });
 
-    // Save updated accounts to localStorage
     localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
     setModal({
       isOpen: true,
@@ -59,7 +53,6 @@ function LostPass() {
       message: "Password reset successful!",
     });
 
-    // Reset the form and state
     setUsernameOrEmail("");
     setIsVerified(false);
   };

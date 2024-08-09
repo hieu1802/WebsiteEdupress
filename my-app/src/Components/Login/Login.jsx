@@ -12,10 +12,8 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Get existing accounts from localStorage
     const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
-    // Check if the username and password match an account
     const account = existingAccounts.find(
       (account) =>
         (account.username === username || account.email === username) &&
@@ -23,16 +21,14 @@ function Login() {
     );
 
     if (account) {
-      // Login successful
       console.log("Login successful");
       setModal({
         isOpen: true,
         title: "Success",
         message: "Login successful!",
       });
-      // You can set the logged-in user's data in local storage or redirect to another page
       localStorage.setItem("loggedInUser", JSON.stringify(account));
-      navigate("/"); // Redirect to the home page
+      navigate("/");
     } else {
       setModal({
         isOpen: true,
