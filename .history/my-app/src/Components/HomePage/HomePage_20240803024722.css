@@ -1,0 +1,549 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.Header{
+    width: 100%;
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.logoHeader{
+    width: 25%;
+    height: 100%;
+    display: flex;   
+    gap: 10px;
+    margin-left: 70px;
+}
+
+
+h3{
+    font-size: 25px;
+    margin-top: 15px;
+    color: rgba(241, 152, 34, 0.979);
+}
+
+.Header > ul{
+ 
+    display: flex;
+    width:60%;
+}
+
+.Header > ul > li{
+    width: 100px;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.Header > ul > li:hover{
+    background-color: rgba(246, 243, 238, 0.633);
+    color: rgba(241, 152, 34, 0.979);
+}
+
+.ulInput{
+    width: 400px ;
+    padding: 20px;
+    display: flex;
+}
+
+.ulInput > input{
+    margin-right:10px;
+    text-align: center;
+    font-size: 15px;
+    width: 400px;
+    height: 35px;
+    border: 1px solid #00000010;
+    background-color: rgba(240, 234, 234, 0.815);
+    border-radius: 12px;
+}
+
+.btnHeader{
+    width: 100px;
+    margin: auto;
+    cursor: pointer;
+}
+.btnIcon{
+    font-size: 25px;
+}
+.loginHeader{
+    display: flex;
+    width: 15%;
+    height: 72px;
+    margin-right: 100px;
+    cursor: pointer;
+}
+
+.loginHeader > div{
+   margin: auto;
+   font-size: 20px;
+   font-weight: 600;
+   text-align: center;
+}
+
+.loginHeader > div > span{
+    margin: 10px;
+}
+
+.loginHeader > div > span:hover {
+    color: rgba(241, 152, 34, 0.979);
+}
+
+.posterHeader{
+    width: 100%;
+    height: 552px;
+    background-color: black;
+    display: flex;
+}
+
+.posterHeader > img{
+    width: 100%;
+}
+
+.posterContent{
+    position: absolute;
+    display: flex;
+    margin-left: 400px;
+    margin-top: 10px;
+    width: 1200px;
+    height: 400px;
+   
+    z-index: 999;
+}
+
+.posterSologun{
+    width: 60%;
+}
+
+.posterSologun > h1{
+    font-size: 70px;
+    text-align: center;
+    color: rgba(241, 152, 34, 0.979);
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.posterSologun > h2{
+    font-size: 20px;
+    text-align: center;
+}
+
+.btnPoster{
+    width: 200px;
+    height: 40px;
+    background-color: red;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    gap: 10px;
+    margin-top: 50px;
+    margin-left: 35%;
+}
+
+.posterAvatar{
+    width: 35%;
+    margin-left: 30px;
+  
+}
+
+.posterAvatar > img{
+    width: 100%;
+    margin-top: 30px;
+}
+
+/************************ContainerPage**************************/
+
+.ContainerPage{
+    position: relative;
+    width: 1200px;
+    height: 100%;
+ 
+    margin-left: 20%;
+}
+
+.categories{
+    width: 100%;
+    height: 640px;
+    background-color: #fff;
+    margin-top: 50px;
+}
+
+.textCategories{
+    width: 100%;
+    height: 77px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+.topCategories>h3{
+    color: black;
+    font-size: 30px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    font-weight: 500;
+}
+
+
+.btnCategories{
+    width: 150px;
+    height: 40px;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btnCategories:hover{
+    background-color: rgba(244, 25, 25, 0.757);
+    color: #fff;
+}
+
+.btnCategories > p{
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.boxCategories{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 30px;
+}
+
+.miniBox{
+    width: 200px;
+    height: 200px;
+    border: 1px solid #0000001a;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.iconBox{
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: rgba(241, 152, 34, 0.979);
+}
+
+.miniBox > h4{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.miniBox > h5{
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.courses{
+    width: 1200px;
+    height: 100%;
+    margin-top: 30px;
+}
+
+.boxCourses{
+    width: 1200px;
+    height: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.boxFeaturedCourses{
+    width: 360px;
+    height: 470px;
+    border: 2px solid #0000001a ;
+    border-radius: 24px 24px 0 0;
+}
+
+.boxFeaturedCoursesImg{
+    width: 100%;
+    height: 250px;
+    gap: 16px;
+}
+.boxFeaturedCoursesImg > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 24px 24px 0 0;
+}
+
+.boxFeaturedCoursesContent{
+    width: 360px;
+    height: 180px;
+    padding: 20px;
+}
+
+.boxFeaturedCoursesContentText{
+    width: 300px;
+    height: 100px;
+    background-color: #fff;
+}
+
+.boxFeaturedCoursesContentText > p >span{
+    font-family: exo;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.boxFeaturedCoursesContentText > h4{
+    font-family: exo;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.boxFeaturedCoursesContentMeta{
+    width: 200px;
+    height: 24px;
+    display: flex;
+    background-color: #fff;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    justify-content: space-between;
+}
+
+.boxFeaturedCoursesContentMeta > span{
+    display: flex;
+    font-size: 16px;
+}
+
+.boxFeaturedCoursesContentPrice{
+    width: 300px;
+    height: 28px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.price{
+    display: flex;
+}
+
+.price > p{
+    text-decoration: line-through;
+    color: var(--Grey, #9D9D9D);
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.price > span{
+    color: green;
+    font-weight: 700;
+}
+
+.banner{
+    width: 1200px;
+    height: 320px;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    margin-top: 30px;
+}
+
+.bannerContent{
+    width: 450px;
+    height: 240px;
+    gap: 24px;
+    position: absolute;
+    margin-top: 54px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.bannerContent > h5{
+    font-family: Exo;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+    text-align: left;
+}
+
+.bannerContent > h2{
+    font-family: Exo;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 38.4px;
+    text-align: left;
+}
+
+.bannerContent > p{
+    font-family: Jost;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: left;
+}
+
+.btnBanner{
+    width: 177px;
+    height: 36px;
+    border-radius: 24px;
+    text-align: center;
+    padding-top: 12px;
+    background: var(--Primary, #FF782D);
+    font-size: 18px;
+    color: #fff;
+}
+
+
+.counterBox{
+    width: 1175px;
+    height: 150px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.counterBoxContent{
+    width: 250px;
+    height: 100%;
+    background: var(--White_grey, #F5F5F5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+    align-items: center;
+}
+
+.counterBoxContent > h2{
+    font-family: Exo;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 38.4px;
+    text-align: left;
+    color: var(--Primary, #FF782D);
+}
+
+.counterBoxContent > a{
+    font-family: Jost;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27px;
+    text-align: left;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 16px;
+}
+
+.boxConnect{
+    width: 1175px;
+    height: 450px;
+    margin-top: 30px;
+    display: flex;
+}
+
+.boxConnectImg{
+    width: 56%;
+    height: 100%;
+}
+
+.boxConnectContent{
+    width: 520px;
+    height: 380px;
+    border: 2px solid #0000001a ;
+    margin-top: 35px ;
+    border-radius: 24px;
+}
+
+.boxConnectText{
+    width: 100%;
+    height: 80px;
+}
+
+.boxConnectText > h2{
+    font-family: Exo;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 38.4px;
+    text-align: left;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.boxConnectContainer{
+    width: 100%;
+    height: 300px;
+}
+
+.introduce{
+    width: 100%;
+    height: 60px;
+    padding-left: 15px;
+}
+
+.introduce > p{
+    font-family: Jost;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: left;
+
+}
+
+.connect{
+    width: 100%;
+    height: 240px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.connect > span > a{
+    font-size: 18px;
+    color: blue;
+}
+.connectIcons{
+    color: green;
+    font-size: 24px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.boxFeedbacks{
+    width: 1175px;
+    height: 540px;
+    background-color: bisque;
+    margin-top: 30px;
+}
+
+.feedbacksHeading{
+    width: 100%;
+    height: 80px;
+    background-color: #F5F5F5;
+}
+
+.feedbacksHeading > h2{
+    font-family: Exo;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 38.4px;
+    text-align: center;
+}
+
+.feedbacksHeading > p{
+    font-family: Jost;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+    margin-top: 10px;
+}
