@@ -1,0 +1,106 @@
+.course-detail {
+    background-color: #000;
+    color: #fff;
+    padding: 26px 0 26px 117px;
+    font-family: Arial, sans-serif;
+}
+
+.course-header {
+    display: flex;
+    align-items: center;
+}
+
+.badge {
+    background-color: #666;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.author {
+    color: #bbb;
+}
+
+.course-title {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.course-info {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+}
+
+/* prciecard-css */
+.promo-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+    width: 300px;
+
+}
+
+.promo-image img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.promo-content h3 {
+    font-size: 18px;
+    margin: 15px 0 5px 0;
+}
+
+.promo-content {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 13px;
+}
+
+.promo-content p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.promo-pricing {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.discount-price {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.start-now-button {
+    background-color: #ff6f00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 46px;
+    cursor: pointer;
+    font-size: 16px;
+    font-size: 15px;
+    height: 36px;
+    width: 113px;
+
+}
+
+.start-now-button:hover {
+    background-color: #e65c00;
+}
