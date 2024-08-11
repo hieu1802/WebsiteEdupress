@@ -10,6 +10,8 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
+    localStorage.setItem("username", e);
+
     e.preventDefault();
 
     const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];

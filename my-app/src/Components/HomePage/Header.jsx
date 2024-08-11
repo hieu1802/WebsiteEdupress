@@ -4,9 +4,28 @@ import img02 from "../img/img02.jpg";
 import img03 from "../img/img03.png";
 import "./HomePage.css";
 import { IoIosSearch } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Header() {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("loggedInUser");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setLoggedInUser(user.username);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("loggedInUser");
+    setLoggedInUser(null);
+    navigate("/");
+  };
+
   return (
     <>
       <div className="Header">
@@ -28,15 +47,35 @@ function Header() {
           </div>
         </ul>
         <div className="loginHeader">
-          <div>
-            <Link to="/login">
-              <span>Đăng Nhập</span>
-            </Link>
-            /
-            <Link to="/register">
-              <span>Đăng ký</span>
-            </Link>
-          </div>
+          {loggedInUser ? (
+            <div>
+              <span>Hello {loggedInUser}</span>
+              <button
+                className="btnLogOut"
+                onClick={handleLogout}
+                style={{
+                  marginLeft: "10px",
+                  border: "1px solid transparent",
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  backgroundColor: "transparent",
+                  cursor: "pointer",
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div>
+              <Link to="/login">
+                <span>Đăng Nhập</span>
+              </Link>
+              /
+              <Link to="/register">
+                <span>Đăng ký</span>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       <div className="posterHeader">
