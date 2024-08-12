@@ -14,9 +14,50 @@ import img11 from "../img/img11.png";
 import img12 from "../img/img12.png";
 
 import { topCourses } from "../data/FeaturedCoursesDaa";
-import { topCategories } from "../data/topCategories";
 
 export const ContainerPage = () => {
+  const topCategories = [
+    {
+      id: 1,
+      name: "Art & Design",
+    },
+    {
+      id: 2,
+      name: "Accountant",
+    },
+    {
+      id: 3,
+      name: "Auditor",
+    },
+    {
+      id: 4,
+      name: "Greengrocer",
+    },
+    {
+      id: 5,
+      name: "Journalist",
+    },
+    {
+      id: 6,
+      name: "Plumber",
+    },
+    {
+      id: 7,
+      name: "Sea captain",
+    },
+    {
+      id: 8,
+      name: "Translator",
+    },
+    {
+      id: 9,
+      name: "Office worker",
+    },
+    {
+      id: 10,
+      name: "IT",
+    },
+  ];
 
 
   return (
@@ -33,7 +74,7 @@ export const ContainerPage = () => {
             <div className="miniBox" key={items.id}>
               <AiFillRocket className="iconBox" />
               <h4>{items.name}</h4>
-              <h5>{items.value}</h5>
+              <h5>38K</h5>
             </div>
           ))}
         </div>

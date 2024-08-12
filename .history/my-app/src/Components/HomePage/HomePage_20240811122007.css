@@ -202,7 +202,6 @@ h3{
     margin-top: 15px;
     margin-right: 20px;
     cursor: pointer;
-    padding-top: 5px;
 }
 
 .btnCategories:hover{
@@ -578,23 +577,19 @@ h3{
     scroll-snap-type: x mandatory;
     margin-top: 50px;
     position: relative;
-    height: 400px;
-    cursor: pointer;
+    height: 300px;
 }
-.feedbacksHeadingContent::-webkit-scrollbar {
-    display: none;
-  }
 
 .feedbackItems{
     min-width: 300px; /* Đặt chiều rộng tối thiểu cho mỗi feedback */
-    height: 350px;
+    height: 300px;
     flex-shrink: 0; /* Ngăn chặn các phần tử co lại */
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     scroll-snap-align: start; /* Các phần tử sẽ bắt đầu từ đầu khi cuộn */
     padding: 20px;
-
+    position: absolute;
 }
 
 .feedbacksContents{
