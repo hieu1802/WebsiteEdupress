@@ -8,17 +8,86 @@ import {
   AiOutlineDoubleRight,
   AiFillStar,
 } from "react-icons/ai";
-
+import img04 from "../img/img04.png";
+import img05 from "../img/img05.png";
+import img06 from "../img/img06.png";
+import img07 from "../img/img07.png";
+import img08 from "../img/img08.png";
+import img09 from "../img/img09.png";
 import img10 from "../img/img10.png";
 import img11 from "../img/img11.png";
 import img12 from "../img/img12.png";
 
-import { topCourses } from "../data/FeaturedCoursesDaa";
-import { topCategories } from "../data/topCategories";
-
 export const ContainerPage = () => {
+  const topCategories = [
+    {
+      id: 1,
+      name: "Art & Design",
+    },
+    {
+      id: 2,
+      name: "Accountant",
+    },
+    {
+      id: 3,
+      name: "Auditor",
+    },
+    {
+      id: 4,
+      name: "Greengrocer",
+    },
+    {
+      id: 5,
+      name: "Journalist",
+    },
+    {
+      id: 6,
+      name: "Plumber",
+    },
+    {
+      id: 7,
+      name: "Sea captain",
+    },
+    {
+      id: 8,
+      name: "Translator",
+    },
+    {
+      id: 9,
+      name: "Office worker",
+    },
+    {
+      id: 10,
+      name: "IT",
+    },
+  ];
 
-
+  const topCourses = [
+    {
+      id: 1,
+      img: img04,
+    },
+    {
+      id: 2,
+      img: img05,
+    },
+    {
+      id: 3,
+      img: img06,
+    },
+    {
+      id: 4,
+      img: img07,
+    },
+    {
+      id: 5,
+      img: img08,
+    },
+    {
+      id: 6,
+      img: img09,
+    },
+  ];
   return (
     <div className="ContainerPage">
       <div className="categories">
@@ -27,13 +96,17 @@ export const ContainerPage = () => {
             <h3>Top Categories</h3>
             <p>Bạn không nên bỏ qua!!!</p>
           </div>
+          <div className="btnCategories">
+            {" "}
+            <p>Xem tất cả</p>
+          </div>
         </div>
         <div className="boxCategories">
           {topCategories.map((items) => (
             <div className="miniBox" key={items.id}>
               <AiFillRocket className="iconBox" />
               <h4>{items.name}</h4>
-              <h5>{items.value}</h5>
+              <h5>38K</h5>
             </div>
           ))}
         </div>
@@ -71,7 +144,7 @@ export const ContainerPage = () => {
                         color: "rgba(241, 152, 34, 0.979)",
                       }}
                     />
-                    {items.time} Weeks
+                    2 Weeks
                   </span>
                   <span>
                     <AiOutlineUserAdd
@@ -81,13 +154,13 @@ export const ContainerPage = () => {
                         color: "rgba(241, 152, 34, 0.979)",
                       }}
                     />{" "}
-                    {items.student} students{" "}
+                    50 students{" "}
                   </span>
                 </div>
                 <div className="boxFeaturedCoursesContentPrice">
                   <div className="price">
-                    <p>{items.price}</p>
-                    <span>{items.sale} </span>
+                    <p>4.500.000đ</p>
+                    <span>2.000.000đ </span>
                   </div>
                   <b>Xem chi tiết</b>
                 </div>
@@ -206,6 +279,34 @@ export const ContainerPage = () => {
           </p>
         </div>
         <div className="feedbacksHeadingContent">
+          <div className="feedbackItems">
+            <div className="feedbacksContents">
+              <AiOutlineDoubleLeft
+                style={{
+                  marginBottom: "20px",
+                  fontSize: "24px",
+                }}
+              />
+              <div className="feedbacksContentText">
+                <p>
+                  I must explain to you how all this mistaken . Tdea of
+                  denouncing pleasure and praising pain was born and I will give
+                  you a complete account of the system and expoun
+                </p>
+              </div>
+              <AiOutlineDoubleRight
+                style={{
+                  marginLeft: "200px",
+                  marginTop: "20px",
+                  fontSize: "24px",
+                }}
+              />
+            </div>
+            <div className="feedbacksIdName">
+              <h4>Roe Smith</h4>
+              <p>Designer</p>
+            </div>
+          </div>
           <div className="feedbackItems">
             <div className="feedbacksContents">
               <AiOutlineDoubleLeft

@@ -202,7 +202,6 @@ h3{
     margin-top: 15px;
     margin-right: 20px;
     cursor: pointer;
-    padding-top: 5px;
 }
 
 .btnCategories:hover{
@@ -572,29 +571,22 @@ h3{
 
 .feedbacksHeadingContent{
     display: flex;
-    overflow-x: auto;
+    overflow-x: auto; /* Cho phép cuộn ngang */
     padding: 20px;
-    gap: 20px;
+    gap: 20px; /* Khoảng cách giữa các phần tử */
     scroll-snap-type: x mandatory;
     margin-top: 50px;
     position: relative;
-    height: 400px;
-    cursor: pointer;
 }
-.feedbacksHeadingContent::-webkit-scrollbar {
-    display: none;
-  }
 
 .feedbackItems{
-    min-width: 300px; /* Đặt chiều rộng tối thiểu cho mỗi feedback */
-    height: 350px;
-    flex-shrink: 0; /* Ngăn chặn các phần tử co lại */
+    width: 300px;
+    height: 400px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    scroll-snap-align: start; /* Các phần tử sẽ bắt đầu từ đầu khi cuộn */
-    padding: 20px;
-
+    position: relative;
+    border: 1px solid #00000016;
+    border-radius: 12px;
+    transition: transform 0.5s ease;
 }
 
 .feedbacksContents{

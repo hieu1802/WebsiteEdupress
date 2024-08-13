@@ -202,7 +202,6 @@ h3{
     margin-top: 15px;
     margin-right: 20px;
     cursor: pointer;
-    padding-top: 5px;
 }
 
 .btnCategories:hover{
@@ -579,15 +578,11 @@ h3{
     margin-top: 50px;
     position: relative;
     height: 400px;
-    cursor: pointer;
 }
-.feedbacksHeadingContent::-webkit-scrollbar {
-    display: none;
-  }
 
 .feedbackItems{
     min-width: 300px; /* Đặt chiều rộng tối thiểu cho mỗi feedback */
-    height: 350px;
+    height: 300px;
     flex-shrink: 0; /* Ngăn chặn các phần tử co lại */
     background-color: #fff;
     border-radius: 10px;
