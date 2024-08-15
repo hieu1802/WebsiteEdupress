@@ -14,10 +14,7 @@ const topCourses = [
       price:'4.000.000đ',
       sale:'2.000.000đ',
       student:'60',
-      lessons:'20',
-      author:'Christopher',
-      courseName:'Create an LMS Website with LearnPress'
-
+      lessons:'20'
     },
     {
       id: 2,
@@ -27,9 +24,7 @@ const topCourses = [
       price:'5.000.000đ',
       sale:'2.500.000đ',
        student:'50',
-      lessons:'10',
-      author:'James',
-      courseName:'Create an CSS Website '
+      lessons:'10'
     },
     {
       id: 3,
@@ -39,9 +34,7 @@ const topCourses = [
       price:'7.000.000đ',
       sale:'3.000.000đ',
        student:'70',
-      lessons:'25',
-      author:'Rebecca',
-      courseName:'Create an HTML Website '
+      lessons:'25'
     },
     {
       id: 4,
@@ -51,9 +44,7 @@ const topCourses = [
       price:'6.000.000đ',
       sale:'3.500.000đ',
        student:'30',
-      lessons:'15',
-      author:'Jennifer',
-      courseName:'Create an CSS and REACT Website '
+      lessons:'15'
     },
     {
       id: 5,
@@ -63,9 +54,7 @@ const topCourses = [
       price:'8.000.000đ',
       sale:'4.000.000đ',
        student:'80',
-      lessons:'24',
-      author:'Matthew',
-      courseName:'Create an REACT and SCSS Website '
+      lessons:'24'
     },
     {
       id: 6,
@@ -75,9 +64,7 @@ const topCourses = [
       price:'9.000.000đ',
       sale:'6.000.000đ',
        student:'80',
-      lessons:'26',
-      author:'Daniel',
-      courseName:'Create an HTML and SCSS Website '
+      lessons:'26'
     },
   ];
 

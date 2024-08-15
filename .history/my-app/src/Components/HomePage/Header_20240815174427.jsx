@@ -34,8 +34,8 @@ function Header() {
           <h3>EduPress Academy</h3>
         </div>
         <ul>
-          <Link to="/" className="liLink"><li>Trang Chủ</li></Link>
-          <Link to="/CouresPage" className="liLink"><li>Khóa Học</li></Link>
+          <Link to="/"><li>Trang Chủ</li></Link>
+          <li>Khóa Học</li>
           <li>Kết Nối</li>
           <li>Đánh giá</li>
           <li>Blog</li>

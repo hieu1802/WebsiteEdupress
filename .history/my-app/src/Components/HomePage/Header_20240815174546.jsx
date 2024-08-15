@@ -35,7 +35,7 @@ function Header() {
         </div>
         <ul>
           <Link to="/" className="liLink"><li>Trang Chủ</li></Link>
-          <Link to="/CouresPage" className="liLink"><li>Khóa Học</li></Link>
+          <li>Khóa Học</li>
           <li>Kết Nối</li>
           <li>Đánh giá</li>
           <li>Blog</li>
