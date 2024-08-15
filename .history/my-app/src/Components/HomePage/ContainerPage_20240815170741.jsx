@@ -47,9 +47,7 @@ export const ContainerPage = () => {
           </div>
           <div className="btnCategories">
             {" "}
-            <Link to="/CouresPage" className="btnLink">
-                <p>Xem Tất Cả</p>
-            </Link>
+            <p>Xem tất cả</p>
           </div>
         </div>
         <div className="boxCourses">
@@ -92,7 +90,9 @@ export const ContainerPage = () => {
                     <p>{items.price}</p>
                     <span>{items.sale} </span>
                   </div>
-                  <b>Xem chi tiết</b>
+                  <Link to="/CouresPage">
+                    <b>Xem Chi Tiết</b>
+                  </Link>
                 </div>
               </div>
             </div>

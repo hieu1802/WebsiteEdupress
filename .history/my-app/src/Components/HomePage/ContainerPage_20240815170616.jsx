@@ -15,7 +15,6 @@ import img12 from "../img/img12.png";
 
 import { topCourses } from "../data/FeaturedCoursesDaa";
 import { topCategories } from "../data/topCategories";
-import { Link } from "react-router-dom";
 
 export const ContainerPage = () => {
 
@@ -47,9 +46,7 @@ export const ContainerPage = () => {
           </div>
           <div className="btnCategories">
             {" "}
-            <Link to="/CouresPage" className="btnLink">
-                <p>Xem Tất Cả</p>
-            </Link>
+            <p>Xem tất cả</p>
           </div>
         </div>
         <div className="boxCourses">
