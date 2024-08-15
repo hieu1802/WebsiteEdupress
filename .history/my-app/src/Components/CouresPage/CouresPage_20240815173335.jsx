@@ -1,14 +1,13 @@
 import React from 'react'
 import Header from '../HomePage/Header'
-import Footer from '../HomePage/Footer'
-import Container from './Container'
+import Footer from "./Footer.jsx";
 
 function CouresPage() {
   return (
    <>
       <Header/>
-      <Container/>
-      <Footer/>
+
+      
    </>
 
     

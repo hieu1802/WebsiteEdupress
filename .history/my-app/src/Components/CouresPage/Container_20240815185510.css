@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 1175px;
+    height: 1800px;
+    margin-left: 20%;
+    display: flex;
+}
+
+.boxProduct{
+    width: 880px;
+    height: 100%;
+    padding-left:20px;
+}
+
+.boxProduct > h2{
+    font-family: Exo;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 43.2px;
+    text-align: left;
+}
+
+.boxContent{
+    width: 800px;
+    height: 250px;
+    margin-top: 30px;
+    display: flex;
+    border-radius: 20px 0 0 20px;
+    border: 1px solid #00000048;
+}
+
+.boxImg{
+    width: 300px;
+    height: 100%;
+}
+.boxImg > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+}
+
+.boxTexT{
+    width: 500px;
+    height: 100%;
+}
+
+.text{
+    width: 420px;
+    height: 150px;
+    display: flex;
+    margin-left: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > h4{
+    margin-top: 10px;
+    font-family: Jost;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.text > h5{
+    font-family: Exo;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+}
+
+.iconsValue{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icons{
+    color: rgba(241, 152, 34, 0.979);
+    font-size: 24px;
+    margin-top: 8px;
+}
+.iconsValue> span{
+    font-size: 18px;
+}
+
+.boxPrice{
+    width: 100%;
+    height: 50px;
+
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.priceBox{
+    width: 280px;
+    height: 100%;
+    display: flex;
+}
+
+.priceBox > p{
+    text-decoration: line-through;
+    color: var(--Grey, #9D9D9D);
+    font-weight: 700;
+    margin-right: 10px;
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.priceBox > span{
+    color: green;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.btnClick{
+    width: 180px;
+    height: 40px;
+    border-radius: 24px;
+    border: 1px solid #000;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.btnClick > p{
+    text-align: center;
+    margin-top: 8px;
+    font-weight: 600;
+    color: red;
+}
+
+.btnClick:hover{
+    background-color: red;
+}
+
+.btnClick > p:hover{
+    color: #fff;
+}
+
+.boxSearch{
+    width: 300px;
+    height: 100%;
+    background-color: beige;
+}

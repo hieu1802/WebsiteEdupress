@@ -43,11 +43,9 @@ h3{
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
-    color: #000;
 }
 
-.Header > ul > li:hover,
-.liLink > li:hover{
+.Header > ul > li:hover{
     background-color: rgba(246, 243, 238, 0.633);
     color: rgba(241, 152, 34, 0.979);
 }
