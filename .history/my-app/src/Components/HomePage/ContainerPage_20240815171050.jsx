@@ -47,7 +47,7 @@ export const ContainerPage = () => {
           </div>
           <div className="btnCategories">
             {" "}
-            <Link to="/CouresPage" className="btnLink">
+            <Link to="/CouresPage">
                 <p>Xem Tất Cả</p>
             </Link>
           </div>
