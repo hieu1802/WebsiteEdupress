@@ -1,0 +1,154 @@
+.course-detail {
+    background-color: #000;
+    color: #fff;
+    padding: 26px 0 26px 117px;
+    font-family: Arial, sans-serif;
+}
+
+.course-header {
+    display: flex;
+    align-items: center;
+}
+
+.badge {
+    background-color: #666;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.author {
+    color: #bbb;
+}
+
+.course-title {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.course-info {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+}
+
+/* prciecard-css */
+.promo-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    text-align: center;
+    width: 300px;
+    top: 34px;
+    right: 100px;
+
+
+}
+
+.promo-image img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.promo-content h3 {
+    font-size: 18px;
+    margin: 15px 0 5px 0;
+}
+
+.promo-content {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 13px;
+}
+
+.promo-content p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.promo-pricing {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.discount-price {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.start-now-button {
+    font-size: 2px;
+    border-radius: 26px;
+    height: fit-content;
+    width: 98px;
+    height: 31px;
+    background-color: #ff6f00;
+    color: white;
+
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+
+/* css tabnavigation */
+.tab-container {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    border: 1px solid #EAEAEA;
+    font-family: Arial, sans-serif;
+    width: fit-content;
+    margin: 5% 0 0 16%;
+    min-height: fit-content;
+    max-width: 650px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.tabs button {
+    background: none;
+    transition: all 0.3s ease;
+    padding: 16px 30px;
+    font-size: 17px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-right: 1px solid #EAEAEA;
+    font-weight: bold;
+}
+
+.tabs button:nth-child(5) {
+    border: none;
+}
+
+.tabs button.active {
+    background-color: #F5F5F5;
+    color: #e65c00;
+}
+
+
+.tab-content p {
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: black;
+}
