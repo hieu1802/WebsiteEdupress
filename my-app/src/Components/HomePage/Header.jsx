@@ -49,7 +49,9 @@ function Header() {
         <div className="loginHeader">
           {loggedInUser ? (
             <div>
-              <span>Hello {loggedInUser}</span>
+              <span>
+                Hello <Link to="/info-customer">{loggedInUser}</Link>
+              </span>
               <button
                 className="btnLogOut"
                 onClick={handleLogout}
@@ -60,6 +62,7 @@ function Header() {
                   fontWeight: "600",
                   backgroundColor: "transparent",
                   cursor: "pointer",
+                  color: "#000",
                 }}
               >
                 Logout

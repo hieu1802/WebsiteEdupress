@@ -30,7 +30,11 @@ function Login() {
         message: "Login successful!",
       });
       localStorage.setItem("loggedInUser", JSON.stringify(account));
-      navigate("/");
+      if (account.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } else {
       setModal({
         isOpen: true,
