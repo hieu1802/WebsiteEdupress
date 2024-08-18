@@ -42,9 +42,12 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+    position: absolute;
     text-align: center;
     width: 300px;
+    top: 34px;
+    right: 100px;
+
 
 }
 
@@ -88,19 +91,64 @@
 }
 
 .start-now-button {
+    font-size: 2px;
+    border-radius: 26px;
+    height: fit-content;
+    width: 98px;
+    height: 31px;
     background-color: #ff6f00;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 46px;
-    cursor: pointer;
-    font-size: 16px;
-    font-size: 15px;
-    height: 36px;
-    width: 113px;
 
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
 }
 
-.start-now-button:hover {
-    background-color: #e65c00;
+
+/* css tabnavigation */
+.tab-container {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    border: 1px solid #EAEAEA;
+    font-family: Arial, sans-serif;
+    width: fit-content;
+    margin: 5% 0 0 16%;
+    min-height: fit-content;
+    max-width: 650px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.tabs button {
+    background: none;
+    transition: all 0.3s ease;
+    padding: 16px 30px;
+    font-size: 17px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-right: 1px solid #EAEAEA;
+    font-weight: bold;
+}
+
+.tabs button:nth-child(5) {
+    border: none;
+}
+
+.tabs button.active {
+    background-color: #F5F5F5;
+    color: #e65c00;
+}
+
+
+.tab-content p {
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: black;
 }

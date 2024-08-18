@@ -1,5 +1,4 @@
 import React from 'react';
-import './PriceCard.css';
 import Card from './image/card.jpg';
 import './CourseDetail.css';
 
