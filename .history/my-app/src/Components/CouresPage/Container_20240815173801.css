@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 1175px;
+    height: 1300px;
+    background-color: antiquewhite;
+    margin-left: 20%;
+}
