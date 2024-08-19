@@ -6,9 +6,13 @@ import "./HomePage.css";
 import { IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { topCourses } from "../data/FeaturedCoursesDaa"; // Import courses data
 
-function Header() {
+function Header({ courses }) {
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +30,21 @@ function Header() {
     navigate("/");
   };
 
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query) {
+      const results = topCourses.filter(
+        (course) =>
+          course.courseName.toLowerCase().includes(query.toLowerCase()) ||
+          course.author.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
   return (
     <>
       <div className="Header">
@@ -34,16 +53,37 @@ function Header() {
           <h3>EduPress Academy</h3>
         </div>
         <ul>
-          <Link to="/" className="liLink"><li>Trang Chủ</li></Link>
-          <Link to="/CouresPage" className="liLink"><li>Khóa Học</li></Link>
+          <Link to="/" className="liLink">
+            <li>Trang Chủ</li>
+          </Link>
+          <Link to="/CouresPage" className="liLink">
+            <li>Khóa Học</li>
+          </Link>
           <li>Kết Nối</li>
           <li>Đánh giá</li>
           <li>Blog</li>
           <div className="ulInput">
-            <input placeholder="Tìm Kiếm ..." />
+            <input
+              placeholder="Tìm Kiếm ..."
+              value={searchQuery}
+              onChange={handleSearch}
+            />
             <div className="btnHeader">
               <IoIosSearch className="btnIcon" />
             </div>
+            {searchResults.length > 0 && (
+              <div className="searchResults">
+                {searchResults.map((course) => (
+                  <div
+                    key={course.id}
+                    className="searchResultItem"
+                    onClick={() => navigate(`/course/${course.id}`)}
+                  >
+                    {course.courseName} | {course.author}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </ul>
         <div className="loginHeader">
