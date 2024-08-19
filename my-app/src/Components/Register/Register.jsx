@@ -51,7 +51,9 @@ function Register() {
       return;
     }
 
-    const newAccount = { email, username, password };
+    const role = username.includes("admin") ? "admin" : "user";
+
+    const newAccount = { email, username, password, role };
     localStorage.setItem(
       "accounts",
       JSON.stringify([...existingAccounts, newAccount])

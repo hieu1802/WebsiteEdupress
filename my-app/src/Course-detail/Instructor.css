@@ -1,0 +1,67 @@
+.instructor-card {
+    padding-left: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    width: 100%;
+    max-width: 600px;
+
+}
+
+.instructor-header {
+    display: flex;
+    align-items: center;
+}
+
+.instructor-logo {
+    width: 50%;
+
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.instructor-info h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.instructor-info p {
+    width: 100%;
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.instructor-meta {
+
+    margin: 10px 0;
+}
+
+.meta-item {
+    font-size: 14px;
+    color: #666;
+}
+
+p.instructor-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+.instructor-social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instructor-social span {
+    font-size: 14px;
+    color: #666;
+}
+
+.instructor-social a {
+    color: #333;
+    font-size: 20px;
+    text-decoration: none;
+}
