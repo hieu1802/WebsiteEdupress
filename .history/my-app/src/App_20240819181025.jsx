@@ -10,7 +10,6 @@ import CouresPage from "./Components/CouresPage/CouresPage.jsx";
 import BlogPage from "./Components/BlogPage/BlogPage.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import InfoCustomer from "./Components/InfoCustomer/InfoCustomer.jsx";
-import CourseDetail from "./Course-detail/Coursedetail.js";
 
 function App() {
   return (
@@ -28,8 +27,6 @@ function App() {
           <Route path="/CouresPage" element={<CouresPage />} />
           <Route path="/info-customer" element={<InfoCustomer />} />
           <Route path="/BlogPage" element={<BlogPage />} />
-          <Route path="/Coursedetail" element={<CourseDetail />} />
-
         </Routes>
       </Router>
     </>
