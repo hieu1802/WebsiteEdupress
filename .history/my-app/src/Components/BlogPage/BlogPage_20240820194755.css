@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.blogContainer{
+    width: 1175px;
+    height: 1600px;
+    margin-left: 20%;
+    background-color: antiquewhite;
+}

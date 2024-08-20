@@ -1,0 +1,174 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.blogContainer{
+    width: 1175px;
+    height: 1600px;
+    margin-left: 20%;
+    display: flex;
+}
+
+.blogMain{
+    width: 900px;
+    height: 100%;
+}
+
+.blogTitle{
+    width: 100%;
+    height: 80px;
+}
+
+.blogTitle > h1{
+    font-family: Exo;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 43.2px;
+    text-align: left;
+    color: #000;
+}
+
+.blogDetail{
+    width: 100%;
+    height: 850px;
+}
+
+.blogImg{
+    width: 100%;
+    height: 500px;
+}
+
+.blogContent{
+    width: 100%;
+    height: 250px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.blogContent > p{
+    font-family: Jost;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: left;
+}
+
+.blogTag{
+    width: 100%;
+    height: 40px;
+    display: flex;
+}
+
+.boxTags{
+    width: 100px;
+    height: 30px;
+    border: 1px solid #000;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.blogSideBar{
+    width: 275px;
+    height: 800px;
+    background-color: antiquewhite;
+    border: 1px solid #0000003d;
+}
+
+.category{
+    width: 90%;
+    height: 250px;
+    margin-left: 10px;
+}
+
+.category > h4{
+    font-family: Exo;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.cateBox{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+ 
+}
+
+.boxRecent{
+    width: 90%;
+    height: 350px;
+    margin-left: 10px;
+}
+
+.boxRecent > h4{
+    font-family: Exo;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+}
+
+.articles{
+    width: 100%;
+    height: 90px;
+    display: flex;
+    margin: 0;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.articlesImg{
+    width: 40%;
+    height: 100%;
+}
+
+.articlesImg > img{
+    width: 100%;
+    height: 100%;
+}
+
+.articlesContents{
+    width: 60%;
+    height: 90px;
+   
+}
+
+.articlesContents > p{
+    font-family: Jost;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.tags{
+    width: 90%;
+    height: 150px;
+    margin-left: 10px;
+    background-color: rgb(158, 217, 233);
+    margin-top: 10px;
+}
+
+.tags > h4{
+    font-family: Exo;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+}
+
+.hastag{
+    width: 100%;
+    height: 100px;
+    background-color: beige;
+    
+}
