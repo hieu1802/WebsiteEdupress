@@ -61,7 +61,9 @@ function Header({ courses }) {
           </Link>
           <li>Kết Nối</li>
           <li>Đánh giá</li>
-          <Link to="/BlogPage" className="liLink"><li>Blog</li></Link>
+          <Link to="/BlogPage" className="liLink">
+            <li>Blog</li>
+          </Link>
           <div className="ulInput">
             <input
               placeholder="Tìm Kiếm ..."
