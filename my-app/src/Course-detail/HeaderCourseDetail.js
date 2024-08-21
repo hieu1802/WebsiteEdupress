@@ -7,21 +7,21 @@ import Quizz from './image/quizz.png';
 import './CourseDetail.css';
 
 
-const HeaderCourseDetail = () => {
+const HeaderCourseDetail = ({ course }) => {
     return (
         <>
             <div className="course-detail">
                 <div className="course-header">
                     <span className="badge">Photography</span>
-                    <span className="author">by Determined-Poitras</span>
+                    <span className="author">by <span className='name-author' style={{ color: 'white' }}>{course.author}</span></span>
                 </div>
-                <h1 className="course-title">The Ultimate Guide To The Best WordPress LMS Plugin</h1>
+                <h1 className="course-title">{course.courseName}</h1>
                 <div className="course-info">
-                    <span className="info-item"><img src={Time} /> 2Weeks</span>
-                    <span className="info-item"><img src={Student} /> 156 Students</span>
-                    <span className="info-item"><img src={Levels} />All levels</span>
-                    <span className="info-item"><img src={Lesson} /> 20 Lessons</span>
-                    <span className="info-item"><img src={Quizz} /> 3 Quizzes</span>
+                    <span className="info-item time"><img src={Time} /> {course.time} Weeks</span>
+                    <span className="info-item student"><img src={Student} /> {course.student} Students</span>
+                    <span className="info-item levels"><img src={Levels} />All levels</span>
+                    <span className="info-item lesson"><img src={Lesson} /> {course.lessons} Lessons</span>
+                    <span className="info-item quizz"><img src={Quizz} />{course.quizz}30 Quizzes</span>
                 </div>
             </div>
         </>

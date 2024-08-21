@@ -2,16 +2,17 @@ import React from 'react';
 import Card from './image/card.jpg';
 import './CourseDetail.css';
 
-function PriceCourseCard() {
+const PriceCourseCard = ({ course }) => {
+    if (!course) return null;
     return (
         <div className="promo-card">
             <div className="promo-image">
-                <img src={Card} />
+                <img src={course.img} />
             </div>
             <div className="promo-content">
                 <div className="promo-pricing">
-                    <span className="original-price">$59.0</span>
-                    <span className="discount-price">$49.0</span>
+                    <span className="original-price">{course.price}</span>
+                    <span className="discount-price">{course.sale}</span>
                 </div>
                 <button className="start-now-button">Start Now</button>
             </div>

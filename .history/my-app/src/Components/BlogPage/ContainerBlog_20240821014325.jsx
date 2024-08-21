@@ -1,0 +1,129 @@
+import React, { useState } from 'react'
+import img12 from '../img/img12.png'
+import img11 from '../img/img11.png'
+import img10 from '../img/img10.png'
+
+function ContainerBlog() {
+
+  const [mainImage, setMainImage] = useState(img12)
+
+  const recentPosts = [
+    {
+      id: 1,
+      title: 'Bài đăng 1',
+      image: img12
+    },
+    {
+      id: 2,
+      title: 'Bài đăng 2',
+      image: img11
+    },
+    {
+      id: 3,
+      title: 'Bài đăng 3',
+      image: img10
+    }
+  ];
+
+
+
+
+
+
+  return (
+    <div className='blogContainer'>
+        <div className='blogMain'>
+          <div className='blogTitle'>
+            <h1>Best LearnPress WordPress Theme Collection for 2023</h1>
+          </div>
+          <div className='blogDetail'>
+            <img src={mainImage} className='blogImg' alt='main'/>
+            <div className='blogContent'>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis faucibus odio arcu duis dui, adipiscing facilisis. Urna, donec turpis egestas volutpat. Quisque nec non amet quis. Varius tellus justo odio parturient mauris curabitur lorem in. Pulvinar sit ultrices mi ut eleifend luctus ut. Id 
+                  sed faucibus bibendum augue id cras purus. At eget euismod cursus non. Molestie dignissim sed volutpat feugiat vel enim eu turpis imperdiet. 
+
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis faucibus odio arcu duis dui, adipiscing facilisis. Urna, donec turpis egestas volutpat. Quisque nec non amet quis. Varius tellus justo odio parturient mauris curabitur lorem in. Pulvinar sit ultrices 
+                  mi ut eleifend luctus ut. Id sed faucibus bibendum augue id cras purus.
+                </p>
+            </div>
+            <div className='blogTag'>
+              <div className='boxTags'>Tags:</div>
+              <div className='boxTags'>Free Couses</div>
+              <div className='boxTags'>Maketings</div>
+              <div className='boxTags'>LMS</div>
+              <div className='boxTags'>Edupress</div>
+              <div className='boxTags'>Free Couses</div>
+            </div>
+          </div>
+
+        </div>
+        <div className='blogSideBar'>
+          <div className='category'>
+              <h4>Category</h4>
+              <div className='cateBox'>
+                  <p>Commercial</p>
+                  <p>15</p>
+              </div>
+              <div className='cateBox'>
+                  <p>Office</p>
+                  <p>15</p>
+              </div>
+              <div className='cateBox'>
+                  <p>Shop</p>
+                  <p>15</p>
+              </div>
+              <div className='cateBox'>
+                  <p>Educate</p>
+                  <p>15</p>
+              </div>
+              <div className='cateBox'>
+                  <p>Academy</p>
+                  <p>15</p>
+              </div>
+              <div className='cateBox'>
+                  <p>Single family home</p>
+                  <p>15</p>
+              </div>
+          </div>
+          <div className='boxRecent'>
+              <h4>Recent posts</h4>
+              <div className='articles'>
+                  <div className='articlesImg'>
+                      <img src={img12} />
+                  </div>
+                  <div className='articlesContents'>
+                      <p>Best LearnPress WordPress Theme Collection for 2023</p>
+                  </div>
+              </div>
+              <div className='articles'>
+                  <div className='articlesImg'>
+                      <img src={img12} />
+                  </div>
+                  <div className='articlesContents'>
+                      <p>Best LearnPress WordPress Theme Collection for 2023</p>
+                  </div>
+              </div>
+              <div className='articles'>
+                  <div className='articlesImg'>
+                      <img src={img12} />
+                  </div>
+                  <div className='articlesContents'>
+                      <p>Best LearnPress WordPress Theme Collection for 2023</p>
+                  </div>
+              </div>
+              <div className='tags'>
+                  <h4>Tags</h4>
+                  <div className='hastag'>
+                      <div className='boxTags'>Free Couses</div>
+                      <div className='boxTags'>Maketings</div>
+                      <div className='boxTags'>LMS</div>
+                      <div className='boxTags'>Free Couses</div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  )
+}
+
+export default ContainerBlog

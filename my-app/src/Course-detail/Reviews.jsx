@@ -61,13 +61,7 @@ const Reviews = ({ reviewsData }) => {
                     </div>
                 ))}
             </div>
-            <div className="pagination">
-                <button>&lt;</button>
-                <button className="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>&gt;</button>
-            </div>
+
         </div>
     );
 };

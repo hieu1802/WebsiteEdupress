@@ -30,6 +30,7 @@ function App() {
           <Route path="/info-customer" element={<InfoCustomer />} />
           <Route path="/BlogPage" element={<BlogPage />} />
           <Route path="/Coursedetail" element={<CourseDetail />} />
+          <Route path="/Coursedetail/:id" element={<CourseDetail />} />
           <Route path="/delete-account" element={<DeleteAccount />} />
         </Routes>
       </Router>
