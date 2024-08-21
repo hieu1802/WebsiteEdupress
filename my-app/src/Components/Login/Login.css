@@ -13,6 +13,8 @@
 
   h1 {
     margin-top: 0px;
+    font-size: 30px;
+    text-align: center;
   }
 
   form {
@@ -30,12 +32,13 @@
         padding: 10px 16px;
         border: 1px solid #9d9d9d;
         border-radius: 8px;
-
+        font-size: 12px;
         box-sizing: border-box;
       }
     }
 
     .remember-me {
+      font-size: 12px;
       font-weight: 400;
       color: #555555;
       display: flex;
@@ -46,19 +49,19 @@
     button {
       width: 100%;
       cursor: pointer;
-      padding: 10px 24px;
+      padding: 8px 24px;
       border-radius: 24px;
       border-color: transparent;
       background-color: #ff7822;
       color: #fff;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 27px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .lost-pass {
       color: #000;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 27px;
       font-weight: 400;
     }

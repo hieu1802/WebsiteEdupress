@@ -11,6 +11,7 @@ import BlogPage from "./Components/BlogPage/BlogPage.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import InfoCustomer from "./Components/InfoCustomer/InfoCustomer.jsx";
 import CourseDetail from "./Course-detail/Coursedetail.js";
+import DeleteAccount from "./Components/DeleteAccount/DeleteAccount.jsx";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="/info-customer" element={<InfoCustomer />} />
           <Route path="/BlogPage" element={<BlogPage />} />
           <Route path="/Coursedetail" element={<CourseDetail />} />
-
+          <Route path="/delete-account" element={<DeleteAccount />} />
         </Routes>
       </Router>
     </>
