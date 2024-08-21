@@ -28,8 +28,8 @@ function App() {
           <Route path="/CouresPage" element={<CouresPage />} />
           <Route path="/info-customer" element={<InfoCustomer />} />
           <Route path="/BlogPage" element={<BlogPage />} />
-          <Route path="/Coursedetail" element={<CourseDetail />} />
-          
+          <Route path="/Coursedetail/:id" element={<CourseDetail />} />
+
         </Routes>
       </Router>
     </>

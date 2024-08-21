@@ -6,7 +6,12 @@ import "./CourseDetail.css";
 import CommentForm from "./CommentForm";
 import Header from "../Components/HomePage/Header";
 import Footer from "../Components/HomePage/Footer";
+import { useLocation } from "react-router-dom";
+
 const CourseDetail = () => {
+
+  const location = useLocation();
+  const selectedCourse = location.state?.course;
   const [reviewsData, setReviewsData] = useState([]);
 
   // const addComment = (newReview) => {
@@ -24,12 +29,14 @@ const CourseDetail = () => {
 
   return (
     <>
-      <Header/>
-      <HeaderCourseDetail />
-      <PriceCourseCard />
+      <Header />
+      <HeaderCourseDetail course={selectedCourse} />
+
+      <PriceCourseCard course={selectedCourse} />
+
       <TabNavigation reviewsData={reviewsData} />
       <CommentForm addComment={addComment} />
-      <Footer/>
+      <Footer />
     </>
   );
 };
