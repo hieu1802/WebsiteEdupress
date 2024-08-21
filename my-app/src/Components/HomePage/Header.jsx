@@ -5,7 +5,7 @@ import "./HomePage.css";
 import { IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { topCourses } from "../data/FeaturedCoursesDaa"; // Import courses data
+import { topCourses } from "../data/FeaturedCoursesDaa";
 
 function Header({ courses }) {
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -33,11 +33,15 @@ function Header({ courses }) {
     const query = e.target.value;
     setSearchQuery(query);
     if (query) {
-      const results = topCourses.filter(
-        (course) =>
-          course.courseName.toLowerCase().includes(query.toLowerCase()) ||
-          course.author.toLowerCase().includes(query.toLowerCase())
-      );
+      const results = topCourses.filter((course) => {
+        if (course && course.courseName && course.author) {
+          return (
+            course.courseName.toLowerCase().includes(query.toLowerCase()) ||
+            course.author.toLowerCase().includes(query.toLowerCase())
+          );
+        }
+        return false;
+      });
       setSearchResults(results);
     } else {
       setSearchResults([]);
@@ -78,7 +82,7 @@ function Header({ courses }) {
                   <div
                     key={course.id}
                     className="searchResultItem"
-                    onClick={() => navigate(`/Coursedetail`)}
+                    onClick={() => navigate(`/Coursedetail/${course.id}`)}
                   >
                     {course.courseName} | {course.author}
                   </div>
@@ -122,7 +126,6 @@ function Header({ courses }) {
           )}
         </div>
       </div>
-
     </>
   );
 }
