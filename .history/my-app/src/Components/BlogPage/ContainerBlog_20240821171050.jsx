@@ -12,7 +12,7 @@ function ContainerBlog() {
 
   
 
-  const handleSelectPost = (image, title, content) => {
+  const handleSelectPost = (image, title) => {
     setMainImage(image);
     setMainTitle(title);
     setMainContent(content) 

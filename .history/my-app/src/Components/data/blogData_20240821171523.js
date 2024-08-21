@@ -21,7 +21,7 @@ const recentPosts = [
       id: 3,
       title: 'Best HTML and SCSS Theme Collection for 2025',
       image: img15,
-      content:'Aliquyam et eos et doming. Aliquyam dolore labore amet nulla sit sed. Consequat kasnulla sit sed. Consequat kasd vero iriure diam dolornulla sit sed. Consequat kasd vero iriure diam dolord vero iriure diam dolornulla sit sed. Consequat kasd vero iriure diam dolor. Ut suscipit diam est congue kasd stet et amet delenit est praesent lorem eos et. Elitr accusam nulla laoreet lorem ea est sit no ipsum. Clita molestie voluptua sea aliquyam vero est takimata ut odio ut no. Consequat takimata duo amet euismod et at sed tempor.'
+      content:'Aliquyam et eos et doming. Aliquyam dolore labore amet nulla sit sed. Consequat kasd vero iriure diam dolornulla sit sed. Consequat kasd vero iriure diam dolor. Ut suscipit diam est congue kasd stet et amet delenit est praesent lorem eos et. Elitr accusam nulla laoreet lorem ea est sit no ipsum. Clita molestie voluptua sea aliquyam vero est takimata ut odio ut no. Consequat takimata duo amet euismod et at sed tempor.'
     }
   ];
 
