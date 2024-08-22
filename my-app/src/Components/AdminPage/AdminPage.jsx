@@ -13,6 +13,22 @@ function AdminPage() {
 
   useEffect(() => {
     const storedAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
+
+    const adminAccountExists = storedAccounts.some(
+      (account) => account.username === "admin"
+    );
+
+    if (!adminAccountExists) {
+      const adminAccount = {
+        email: "admin@example.com",
+        username: "admin",
+        password: "admin",
+        role: "admin",
+      };
+      storedAccounts.push(adminAccount);
+      localStorage.setItem("accounts", JSON.stringify(storedAccounts));
+    }
+
     setAccounts(storedAccounts);
   }, []);
 
@@ -24,6 +40,10 @@ function AdminPage() {
   };
 
   const handleDeleteAccount = (username) => {
+    if (username === "admin") {
+      alert("Cannot delete the admin account");
+      return;
+    }
     const updatedAccounts = accounts.filter(
       (account) => account.username !== username
     );
@@ -32,6 +52,10 @@ function AdminPage() {
   };
 
   const handleUpdateAccount = () => {
+    if (editingAccount.username === "admin") {
+      alert("Cannot modify the admin account");
+      return;
+    }
     const updatedAccounts = accounts.map((account) =>
       account.username === editingAccount.username ? editingAccount : account
     );
@@ -41,6 +65,10 @@ function AdminPage() {
   };
 
   const handleRoleChange = (username, role) => {
+    if (username === "admin") {
+      alert("Cannot change the role of the admin account");
+      return;
+    }
     const updatedAccounts = accounts.map((account) =>
       account.username === username ? { ...account, role } : account
     );
@@ -73,14 +101,23 @@ function AdminPage() {
                   onChange={(e) =>
                     handleRoleChange(account.username, e.target.value)
                   }
+                  disabled={account.username === "admin"}
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
                 </select>
               </td>
               <td>
-                <button onClick={() => setEditingAccount(account)}>Edit</button>
-                <button onClick={() => handleDeleteAccount(account.username)}>
+                <button
+                  onClick={() => setEditingAccount(account)}
+                  disabled={account.username === "admin"}
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDeleteAccount(account.username)}
+                  disabled={account.username === "admin"}
+                >
                   Delete
                 </button>
               </td>
@@ -120,6 +157,7 @@ function AdminPage() {
               : setNewAccount({ ...newAccount, username: e.target.value })
           }
           required
+          disabled={editingAccount && editingAccount.username === "admin"}
         />
         <input
           type="password"
@@ -134,21 +172,16 @@ function AdminPage() {
               : setNewAccount({ ...newAccount, password: e.target.value })
           }
           required
+          disabled={editingAccount && editingAccount.username === "admin"}
         />
-        <select
-          value={editingAccount ? editingAccount.role : newAccount.role}
-          onChange={(e) =>
-            editingAccount
-              ? setEditingAccount({ ...editingAccount, role: e.target.value })
-              : setNewAccount({ ...newAccount, role: e.target.value })
-          }
-        >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
         <button type="submit">
           {editingAccount ? "Update Account" : "Add Account"}
         </button>
+        {editingAccount && (
+          <button type="button" onClick={() => setEditingAccount(null)}>
+            Cancel
+          </button>
+        )}
       </form>
     </div>
   );
