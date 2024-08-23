@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import "./Register.css";
 import Modal from "../Modal/Modal.jsx";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const [error, setError] = useState("");
-  // const [success, setSuccess] = useState("");
   const [modal, setModal] = useState({
     isOpen: false,
     title: "",
     message: "",
   });
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -51,9 +51,7 @@ function Register() {
       return;
     }
 
-    const role = username.includes("admin") ? "admin" : "user";
-
-    const newAccount = { email, username, password, role };
+    const newAccount = { email, username, password, role: "user" };
     localStorage.setItem(
       "accounts",
       JSON.stringify([...existingAccounts, newAccount])
@@ -64,6 +62,10 @@ function Register() {
       title: "Success",
       message: "Registration successful!",
     });
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
 
     setEmail("");
     setUsername("");
@@ -76,7 +78,7 @@ function Register() {
       <div className="register">
         <h1>Register</h1>
         <form onSubmit={handleRegister}>
-          <div class="input-group">
+          <div className="input-group">
             <input
               type="text"
               id="email"
@@ -87,7 +89,7 @@ function Register() {
               required
             />
           </div>
-          <div class="input-group">
+          <div className="input-group">
             <input
               type="text"
               id="username"
@@ -98,7 +100,7 @@ function Register() {
               required
             />
           </div>
-          <div class="input-group">
+          <div className="input-group">
             <input
               type="password"
               id="password"
@@ -109,7 +111,7 @@ function Register() {
               required
             />
           </div>
-          <div class="input-group">
+          <div className="input-group">
             <input
               type="password"
               id="confirmPassword"

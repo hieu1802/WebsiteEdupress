@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Modal from "../Modal/Modal.jsx";
 import "./LostPass.css";
+import { useNavigate } from "react-router-dom";
 
 function LostPass() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [modal, setModal] = useState({ isOpen: false, title: "", message: "" });
+  const navigate = useNavigate();
 
   const handleLostPass = (e) => {
     e.preventDefault();
@@ -52,6 +54,10 @@ function LostPass() {
       title: "Success",
       message: "Password reset successful!",
     });
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
 
     setUsernameOrEmail("");
     setIsVerified(false);
