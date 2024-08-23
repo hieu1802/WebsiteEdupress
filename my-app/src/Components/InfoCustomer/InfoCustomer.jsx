@@ -37,29 +37,38 @@ function InfoCustomer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedAccounts = JSON.parse(localStorage.getItem("accounts")).map(
-      (account) =>
-        account.email === userInfo.email ? { ...account, ...userInfo } : account
-    );
-    localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-    localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
 
-    setModal({
-      isOpen: true,
-      title: "Success",
-      message: "Information updated successfully!",
-    });
+    const buttonClicked = e.nativeEvent.submitter.name;
+
+    if (buttonClicked === "updateInfo") {
+      const updatedAccounts = JSON.parse(localStorage.getItem("accounts")).map(
+        (account) =>
+          account.email === userInfo.email
+            ? { ...account, ...userInfo }
+            : account
+      );
+      localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
+      localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
+
+      setModal({
+        isOpen: true,
+        title: "Success",
+        message: "Information updated successfully!",
+      });
+    } else if (buttonClicked === "deleteAccount") {
+      navigate("/delete-account");
+    }
   };
 
   return (
     <div className="info-customer">
       <h1>Your Information</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="infoInput">
           <label>Email: </label>
           <input type="email" name="email" value={userInfo.email} disabled />
         </div>
-        <div>
+        <div className="infoInput">
           <label>Username: </label>
           <input
             type="text"
@@ -69,7 +78,7 @@ function InfoCustomer() {
             required
           />
         </div>
-        <div>
+        <div className="infoInput">
           <label>Password: </label>
           <input
             type="password"
@@ -79,7 +88,7 @@ function InfoCustomer() {
             required
           />
         </div>
-        <div>
+        <div className="infoInput">
           <label>Date of Birth: </label>
           <input
             type="date"
@@ -89,7 +98,7 @@ function InfoCustomer() {
             // required
           />
         </div>
-        <div>
+        <div className="infoInput">
           <label>Phone Number: </label>
           <input
             type="text"
@@ -99,7 +108,7 @@ function InfoCustomer() {
             // required
           />
         </div>
-        <div>
+        <div className="infoInput">
           <label>Address: </label>
           <input
             type="text"
@@ -109,7 +118,12 @@ function InfoCustomer() {
             // required
           />
         </div>
-        <button type="submit">Update Information</button>
+        <button type="submit" name="updateInfo">
+          Update Information
+        </button>
+        <button className="deleteAcc" type="submit" name="deleteAccount">
+          Delete Account
+        </button>
       </form>
       <Modal
         isOpen={modal.isOpen}
