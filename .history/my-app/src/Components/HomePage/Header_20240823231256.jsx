@@ -71,8 +71,7 @@ function Header({ courses }) {
           <Link to="/BlogPage" className="liLink">
             <li>Blog</li>
           </Link>
-        </ul>
-        <div className="ulInput">
+          <div className="ulInput">
             <input
               placeholder="Tìm Kiếm ..."
               value={searchQuery}
@@ -95,9 +94,10 @@ function Header({ courses }) {
               </div>
             )}
           </div>
+        </ul>
         <div className="loginHeader">
           {loggedInUser ? (
-            <div className="boxLogin">
+            <div>
               <span>
                 Hello <Link to="/info-customer">{loggedInUser}</Link>
               </span>
@@ -118,7 +118,7 @@ function Header({ courses }) {
               </button>
             </div>
           ) : (
-            <div>
+            
               <Link to="/login">
                 <span>Đăng Nhập</span>
               </Link>
@@ -126,7 +126,7 @@ function Header({ courses }) {
               <Link to="/register">
                 <span>Đăng ký</span>
               </Link>
-            </div>
+           
           )}
         </div>
       </div>

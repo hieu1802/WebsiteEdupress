@@ -36,6 +36,7 @@ function App() {
           <Route path="/delete-account" element={<DeleteAccount />} />
           <Route path="/ContactPage" element={<ContactPage />} />
           <Route path="/FAQsPage" element={<FAQs />} />
+          
         </Routes>
       </Router>
     </>

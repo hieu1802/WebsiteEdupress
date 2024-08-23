@@ -112,9 +112,9 @@ export const ContainerPage = () => {
                     <p>{items.price}</p>
                     <span>{items.sale} </span>
                   </div>
-                  <Link to={`/Coursedetail/${items.id}`} state={{ course: items }} >
-                          <b style={{color:'red'}}>Xem Chi Tiết</b>
-                  </Link>
+                  <Link to={`/Coursedetail/${items.id}`} state={{ course: items }} className='btnClick'>
+                                    <p>Xem Chi Tiết</p>
+                                </Link>
                 </div>
               </div>
             </div>

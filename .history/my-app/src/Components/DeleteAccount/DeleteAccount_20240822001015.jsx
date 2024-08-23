@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal.jsx";
 import "./DeleteAccount.css";
-import Header from "../HomePage/Header.jsx";
 
 const DeleteAccount = () => {
   const [reason, setReason] = useState("");
@@ -49,8 +48,6 @@ const DeleteAccount = () => {
   };
 
   return (
-    <>
-    <Header/>
     <div className="delete-account-page">
       <h2>Delete Your Account</h2>
       <form
@@ -90,7 +87,6 @@ const DeleteAccount = () => {
         message={modal.message}
       />
     </div>
-    </>
   );
 };
 

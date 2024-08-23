@@ -30,15 +30,15 @@ h3 {
 
 .Header > ul {
   display: flex;
+
 }
 
 .Header > ul > li,
 .liLink > li {
   width: 100px;
-  height: 52px;
   text-align: center;
-  padding-top: 18px;
-  font-size: 18px;
+  padding: 20px;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
   color: #000;
@@ -52,7 +52,7 @@ h3 {
 
 .ulInput {
   width: 400px;
-  padding: 18px;
+  padding: 20px;
   display: flex;
 }
 
