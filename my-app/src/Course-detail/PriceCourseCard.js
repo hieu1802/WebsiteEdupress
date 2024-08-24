@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './image/card.jpg';
 import './CourseDetail.css';
 
-const PriceCourseCard = ({ course }) => {
+const PriceCourseCard = ({ course, onGetNow }) => {
     if (!course) return null;
     return (
         <div className="promo-card">
@@ -14,8 +14,9 @@ const PriceCourseCard = ({ course }) => {
                     <span className="original-price">{course.price}</span>
                     <span className="discount-price">{course.sale}</span>
                 </div>
-                <button className="start-now-button">Start Now</button>
+                <button className="start-now-button" onClick={onGetNow} >Start Now</button>
             </div>
+
         </div>
     );
 }

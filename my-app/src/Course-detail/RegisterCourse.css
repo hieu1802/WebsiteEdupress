@@ -1,0 +1,89 @@
+.registration-form {
+    height: fit-content;
+    padding: 20px;
+    margin-left: 222px;
+    display: flex;
+    border: 1px solid black;
+    width: 60%;
+    flex-direction: column;
+
+}
+
+.registration-form label input {
+    font-size: 25px;
+    margin-left: 13px;
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 50%;
+    height: 30px;
+}
+
+
+input:focus {
+    outline: none;
+}
+
+.registration-form label {
+    font-size: 25px;
+}
+
+.registration-form h2 {
+    text-align: center;
+}
+
+.sale-course-price {
+    font-size: 25px;
+    margin: 15px 0 15px 0;
+    width: fit-content;
+}
+
+.sale-price-form {
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: start;
+}
+
+.original-form-price {
+    display: flex;
+    padding: 18px 0 18px 0;
+    flex-direction: row;
+    align-items: baseline;
+    border-bottom: 1px solid black;
+}
+
+.phone-register-course {
+    height: 30px;
+    margin-top: 8px;
+}
+
+.payment-logo {
+    display: flex;
+    justify-content: space-around;
+}
+
+.payment-logo span {
+    width: fit-content;
+
+    border: 1px solid gray;
+
+
+}
+
+.payment-logo img {
+    width: 100px;
+    height: 100px;
+
+}
+
+.qr-code {
+
+    width: fit-content;
+    height: fit-content;
+}
+
+.qr-code img {
+    margin-left: 30%;
+    width: 50%;
+    height: 50%;
+}

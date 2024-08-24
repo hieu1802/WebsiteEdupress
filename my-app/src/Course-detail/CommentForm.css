@@ -33,6 +33,10 @@
     font-size: 14px;
 }
 
+.form-group input[type="text"] {
+    margin: 0;
+}
+
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: #ccc;
