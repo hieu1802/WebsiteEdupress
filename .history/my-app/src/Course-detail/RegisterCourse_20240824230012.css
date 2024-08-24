@@ -4,15 +4,13 @@
 }
 
 
-
 .registration-form {
-    position: relative;
     height: fit-content;
     padding: 20px;
     margin-left: 222px;
     display: flex;
     border: 1px solid black;
-    width: 600px;
+    width: 60%;
     flex-direction: column;
 
 }
@@ -53,9 +51,11 @@ input:focus {
 }
 
 .original-form-price {
-    width: 600px;
+    display: flex;
+    padding: 18px 0 18px 0;
+    flex-direction: row;
     align-items: baseline;
-    border-bottom: 3px solid black;
+    border-bottom: 1px solid black;
 }
 
 .phone-register-course {
@@ -89,26 +89,7 @@ input:focus {
 }
 
 .qr-code img {
-    width: 100%;
-    height: 100%;
-}
-
-.original-priceS{
-    text-decoration: line-through;
-    color: #999;
-    margin-right: 10px;
-    font-size: 20px;
-    margin-left: 10px;
-    font-weight: 600;
-}
-
-.all-price > span{
-    color: green;
-    font-weight: 700;
-}
-
-.imgQr{
-    width: 400px;
-    height: 400px;
     margin-left: 30%;
+    width: 50%;
+    height: 50%;
 }

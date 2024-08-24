@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./InfoCustomer.css";
 import Modal from "../Modal/Modal";
 
@@ -123,9 +123,6 @@ function InfoCustomer() {
         </button>
         <button className="deleteAcc" type="submit" name="deleteAccount">
           Delete Account
-        </button>
-        <button style={{backgroundColor:'blue'}}>
-          <Link to='/' style={{color:'#fff'}}>Quay Lại Trang Chủ</Link>
         </button>
       </form>
       <Modal

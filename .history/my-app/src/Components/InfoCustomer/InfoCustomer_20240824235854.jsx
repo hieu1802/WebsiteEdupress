@@ -125,7 +125,7 @@ function InfoCustomer() {
           Delete Account
         </button>
         <button style={{backgroundColor:'blue'}}>
-          <Link to='/' style={{color:'#fff'}}>Quay Lại Trang Chủ</Link>
+          <Link to='/'>Quay Lại Trang Chủ</Link>
         </button>
       </form>
       <Modal
