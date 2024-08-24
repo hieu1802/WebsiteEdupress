@@ -24,6 +24,7 @@
     margin-top: 20px;
 
     .input-group {
+      position: relative;
       width: 100%;
 
       #username,
@@ -34,6 +35,14 @@
         border-radius: 8px;
         font-size: 12px;
         box-sizing: border-box;
+      }
+
+      .toggle-password-visibility {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
       }
     }
 

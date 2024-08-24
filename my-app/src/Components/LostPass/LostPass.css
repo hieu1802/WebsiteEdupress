@@ -25,7 +25,16 @@
     margin-top: 20px;
 
     .input-group {
+      position: relative;
       width: 100%;
+
+      .toggle-password-visibility {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
 
       #usernameOrEmail,
       #newPassword,
