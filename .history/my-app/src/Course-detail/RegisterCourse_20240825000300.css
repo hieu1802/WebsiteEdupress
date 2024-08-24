@@ -70,7 +70,7 @@ input:focus {
 
 .payment-logo span {
     width: fit-content;
-    cursor: pointer;
+
     border: 1px solid gray;
 
 
@@ -109,6 +109,6 @@ input:focus {
 
 .imgQr{
     width: 400px;
-    height: 400px;
+    height: 300px;
     margin-left: 30%;
 }

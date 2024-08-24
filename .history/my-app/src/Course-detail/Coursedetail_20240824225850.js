@@ -43,7 +43,7 @@ const CourseDetail = () => {
 
       <TabNavigation reviewsData={reviewsData} />
       <CommentForm addComment={addComment} />
-      {showRegistrationForm && <div  ref={registrationFormRef}><RegisterCouse course={selectedCourse} /></div>}
+      {showRegistrationForm && <div ref={registrationFormRef}><RegisterCouse course={selectedCourse} /></div>}
       <Footer />
     </>
   );

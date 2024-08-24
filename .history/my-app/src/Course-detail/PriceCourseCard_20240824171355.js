@@ -14,7 +14,7 @@ const PriceCourseCard = ({ course, onGetNow }) => {
                     <span className="original-price">{course.price}</span>
                     <span className="discount-price">{course.sale}</span>
                 </div>
-                <button className="start-now-button" onClick={onGetNow} >Buy Now</button>
+                <button className="start-now-button" onClick={onGetNow} >Start Now</button>
             </div>
 
         </div>

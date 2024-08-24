@@ -83,28 +83,7 @@ export const ContainerPage = () => {
                
                   <h4>{items.courseName}</h4>
                 </div>
-                <div className="boxFeaturedCoursesContentMeta">
-                  <span>
-                    <AiOutlineClockCircle
-                      style={{
-                        fontSize: "20px",
-                        marginRight: "5px",
-                        color: "rgba(241, 152, 34, 0.979)",
-                      }}
-                    />
-                    {items.time} Weeks
-                  </span>
-                  <span>
-                    <AiOutlineUserAdd
-                      style={{
-                        fontSize: "20px",
-                        marginRight: "5px",
-                        color: "rgba(241, 152, 34, 0.979)",
-                      }}
-                    />{" "}
-                    {items.student} students{" "}
-                  </span>
-                </div>
+            
                 <div className="boxFeaturedCoursesContentPrice">
                   <div className="price">
                     <p>{items.price}</p>
@@ -334,7 +313,7 @@ export const ContainerPage = () => {
           </div>
         </div>
         <div className="articlesContainer">
-          <Link to='/BlogPage' className="articlesBox">
+          <div className="articlesBox">
             <img src={img12} />
             <div className="articlesContent">
               <h4>Best LearnPress WordPress Theme Collection for 2023</h4>
@@ -347,8 +326,8 @@ export const ContainerPage = () => {
                 Theme?...
               </p>
             </div>
-          </Link>
-          <Link to='/BlogPage' className="articlesBox">
+          </div>
+          <div className="articlesBox">
             <img src={img12} />
             <div className="articlesContent">
               <h4>Best LearnPress WordPress Theme Collection for 2023</h4>
@@ -361,8 +340,8 @@ export const ContainerPage = () => {
                 Theme?...
               </p>
             </div>
-          </Link>
-          <Link to='/BlogPage' className="articlesBox">
+          </div>
+          <div className="articlesBox">
             <img src={img12} />
             <div className="articlesContent">
               <h4>Best LearnPress WordPress Theme Collection for 2023</h4>
@@ -375,7 +354,7 @@ export const ContainerPage = () => {
                 Theme?...
               </p>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

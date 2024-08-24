@@ -124,8 +124,8 @@ function InfoCustomer() {
         <button className="deleteAcc" type="submit" name="deleteAccount">
           Delete Account
         </button>
-        <button style={{backgroundColor:'blue'}}>
-          <Link to='/' style={{color:'#fff'}}>Quay Lại Trang Chủ</Link>
+        <button>
+          <Link to='/'>Quay Lại Trang Chủ</Link>
         </button>
       </form>
       <Modal

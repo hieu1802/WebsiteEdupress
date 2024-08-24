@@ -40,7 +40,7 @@ const RegisterCouse = ({ course }) => {
 
                 <label>
                     Phương thức thanh toán:
-                    <div name="payment" required style={{marginTop:'15px'}}>
+                    <div name="payment" required style={{marginTop:'10px'}}>
                         <div className='payment-logo'>
                             <span onClick={() => handlePaymentClick(momoQR)}><img src={momo} /></span>
                             <span onClick={() => handlePaymentClick(spQR)}><img src={sp} /></span>
@@ -49,9 +49,7 @@ const RegisterCouse = ({ course }) => {
                         {selectedQR && (
                             <div className='qr-code'>
                                 <h3>Quét mã QR để thanh toán:</h3>
-                                <div className='imgQr'>
-                                    <img src={selectedQR} alt="QR Code" />
-                                </div>
+                                <img src={selectedQR} alt="QR Code" />
                             </div>
                         )}
                     </div>
