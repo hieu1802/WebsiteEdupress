@@ -63,38 +63,42 @@ function Header({ courses }) {
             <li>Khóa Học</li>
           </Link>
           <Link to="/ContactPage" className="liLink">
-             <li>Kết Nối</li>
+            <li>Kết Nối</li>
           </Link>
           <Link to="/FAQsPage" className="liLink">
-              <li>FAQs</li>
+            <li>FAQs</li>
           </Link>
           <Link to="/BlogPage" className="liLink">
             <li>Blog</li>
           </Link>
         </ul>
         <div className="ulInput">
-            <input
-              placeholder="Tìm Kiếm ..."
-              value={searchQuery}
-              onChange={handleSearch}
-            />
-            <div className="btnHeader">
-              <IoIosSearch className="btnIcon" />
-            </div>
-            {searchResults.length > 0 && (
-              <div className="searchResults">
-                {searchResults.map((course) => (
-                  <div
-                    key={course.id}
-                    className="searchResultItem"
-                    onClick={() => navigate(`/Coursedetail/${course.id}`)}
-                  >
-                    {course.courseName} | {course.author}
-                  </div>
-                ))}
-              </div>
-            )}
+          <input
+            placeholder="Tìm Kiếm ..."
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+          <div className="btnHeader">
+            <IoIosSearch className="btnIcon" />
           </div>
+          {searchResults.length > 0 && (
+            <div className="searchResults">
+              {searchResults.map((course) => (
+                <div
+                  key={course.id}
+                  className="searchResultItem"
+                  onClick={() =>
+                    navigate(`/Coursedetail/${course.id}`, {
+                      state: { course },
+                    })
+                  }
+                >
+                  {course.courseName} | {course.author}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         <div className="loginHeader">
           {loggedInUser ? (
             <div className="boxLogin">
