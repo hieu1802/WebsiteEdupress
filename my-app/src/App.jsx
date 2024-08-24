@@ -12,6 +12,8 @@ import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import InfoCustomer from "./Components/InfoCustomer/InfoCustomer.jsx";
 import CourseDetail from "./Course-detail/Coursedetail.js";
 import DeleteAccount from "./Components/DeleteAccount/DeleteAccount.jsx";
+import ContactPage from "./Components/ContactPage/ContactPage.jsx";
+import FAQs from "./Components/FAQs/FAQs.jsx";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/Coursedetail" element={<CourseDetail />} />
           <Route path="/Coursedetail/:id" element={<CourseDetail />} />
           <Route path="/delete-account" element={<DeleteAccount />} />
+          <Route path="/ContactPage" element={<ContactPage />} />
+          <Route path="/FAQsPage" element={<FAQs />} />
         </Routes>
       </Router>
     </>
