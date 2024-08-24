@@ -1,47 +1,47 @@
 .admin {
   font-family: Arial, sans-serif;
   padding: 20px;
-}
 
-h1 {
-  color: #ff7822;
-}
+  h1 {
+    color: #ff7822;
+  }
 
-h2 {
-  color: #ff7822;
-  margin-top: 30px;
-}
+  h2 {
+    color: #ff7822;
+    margin-top: 30px;
+  }
 
-table.listAcc {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
+  table.listAcc {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 
-table.listAcc th,
-table.listAcc td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
 
-table.listAcc th {
-  background-color: #ff7822;
-  color: white;
-}
+    th {
+      background-color: #ff7822;
+      color: white;
+    }
 
-table.listAcc tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-table.listAcc tr:hover {
-  background-color: #ddd;
-}
+    tr:hover {
+      background-color: #ddd;
+    }
 
-table.listAcc select {
-  padding: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+    select {
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  }
 }
 
 button {
@@ -64,31 +64,84 @@ button:hover {
 
 form {
   margin-top: 20px;
+
+  input[type="text"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: 100%;
+    background-color: #ff7822;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #e56b1f;
+  }
+
+  .input-group {
+    position: relative;
+
+    input[type="password"],
+    input[type="text"] {
+      padding-right: 40px;
+    }
+
+    .toggle-password-visibility {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #555;
+    }
+  }
 }
 
-form input[type="text"],
-form input[type="password"],
-form select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+@media (max-width: 480px) {
+  .admin {
+    padding: 10px;
+  }
 
-form button {
-  width: 100%;
-  background-color: #ff7822;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  table.listAcc {
+    font-size: 12px;
+  }
 
-form button:hover {
-  background-color: #e56b1f;
+  th,
+  td {
+    padding: 6px;
+  }
+
+  .toggle-password-visibility {
+    right: 5px;
+  }
+
+  form {
+    margin-top: 10px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
 }

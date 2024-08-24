@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import Modal from "../Modal/Modal.jsx";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,8 +6,20 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [modal, setModal] = useState({ isOpen: false, title: "", message: "" });
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem("savedUsername");
+
+    if (savedUsername) {
+      setUsername(savedUsername);
+      setRememberMe(true);
+    }
+  }, []);
 
   const handleLogin = (e) => {
     localStorage.setItem("username", e);
@@ -30,6 +42,13 @@ function Login() {
         message: "Login successful!",
       });
       localStorage.setItem("loggedInUser", JSON.stringify(account));
+
+      if (rememberMe) {
+        localStorage.setItem("savedUsername", username);
+      } else {
+        localStorage.removeItem("savedUsername");
+      }
+
       if (account.role === "admin") {
         navigate("/admin");
       } else {
@@ -62,7 +81,7 @@ function Login() {
           </div>
           <div class="input-group">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               placeholder="Password*"
@@ -70,10 +89,52 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <span
+              className="toggle-password-visibility"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M1 1l22 22" />
+                  <path d="M17.94 17.94A10.94 10.94 0 0 1 12 21C6.48 21 2 16.5 2 12c0-1.39.28-2.73.78-3.94M3.51 3.51C4.72 2.28 6.27 1.51 8 1.51c2.9 0 5.67 1.68 7.93 4.5" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M22 12c0 4.418-4.477 8-10 8S2 16.418 2 12 6.477 4 12 4s10 3.582 10 8z" />
+                </svg>
+              )}
+            </span>
           </div>
-          <div class="input-group remember-me">
-            <input type="checkbox" id="remember" name="remember" />
-            <label for="remember">Remember Me</label>
+          <div className="input-group remember-me">
+            <input
+              type="checkbox"
+              id="remember"
+              name="remember"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+            />
+            <label htmlFor="remember">Remember Me</label>
           </div>
           <button type="submit">Login</button>
           <Link className="lost-pass" to="/lostPass">
