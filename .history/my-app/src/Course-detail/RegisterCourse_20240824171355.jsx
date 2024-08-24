@@ -54,6 +54,7 @@ const RegisterCouse = ({ course }) => {
                         )}
                     </div>
                 </label>
+                <button className='summit-rgs' type="submit">Xác nhận</button>
             </form>
         </div >
 
