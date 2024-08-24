@@ -3,9 +3,9 @@ import './RegisterCourse.css';
 import sp from './image/logosp.jpg';
 import bank from './image/logobank.png';
 import momo from './image/momologo.png'
-import spQR from './image/spqr.jpg'; // Hình ảnh QR tương ứng
-import bankQR from './image/bankqr.jpg'; // Hình ảnh QR tương ứng
-import momoQR from './image/mmqr.jpg'; // Hình ảnh QR tương ứng
+import spQR from './image/spqr.jpg';
+import bankQR from './image/bankqr.jpg';
+import momoQR from './image/mmqr.jpg';
 const RegisterCouse = ({ course }) => {
     const [selectedQR, setSelectedQR] = useState(null);
 
