@@ -50,8 +50,9 @@ const RegisterCouse = ({ course }) => {
                             <div className='qr-code'>
                                 <h3>Quét mã QR để thanh toán:</h3>
                                 <div className='imgQr'>
-                                    <img src={selectedQR} alt="QR Code" />
+
                                 </div>
+                                <img src={selectedQR} alt="QR Code" />
                             </div>
                         )}
                     </div>

@@ -334,7 +334,7 @@ export const ContainerPage = () => {
           </div>
         </div>
         <div className="articlesContainer">
-          <Link to='/BlogPage' className="articlesBox">
+          <div className="articlesBox">
             <img src={img12} />
             <div className="articlesContent">
               <h4>Best LearnPress WordPress Theme Collection for 2023</h4>
@@ -347,8 +347,8 @@ export const ContainerPage = () => {
                 Theme?...
               </p>
             </div>
-          </Link>
-          <Link to='/BlogPage' className="articlesBox">
+          </div>
+          <div className="articlesBox">
             <img src={img12} />
             <div className="articlesContent">
               <h4>Best LearnPress WordPress Theme Collection for 2023</h4>
@@ -361,8 +361,8 @@ export const ContainerPage = () => {
                 Theme?...
               </p>
             </div>
-          </Link>
-          <Link to='/BlogPage' className="articlesBox">
+          </div>
+          <div className="articlesBox">
             <img src={img12} />
             <div className="articlesContent">
               <h4>Best LearnPress WordPress Theme Collection for 2023</h4>
@@ -375,7 +375,7 @@ export const ContainerPage = () => {
                 Theme?...
               </p>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>
