@@ -10,7 +10,6 @@ import { useLocation } from "react-router-dom";
 import RegisterCouse from "./RegisterCourse";
 
 const CourseDetail = () => {
-
   const location = useLocation();
   const selectedCourse = location.state?.course;
   const [reviewsData, setReviewsData] = useState([]);
@@ -43,8 +42,11 @@ const CourseDetail = () => {
 
       <TabNavigation reviewsData={reviewsData} />
       <CommentForm addComment={addComment} />
-      {showRegistrationForm && <div ref={registrationFormRef}><RegisterCouse course={selectedCourse} /></div>}
-      <Footer />
+      {showRegistrationForm && (
+        <div ref={registrationFormRef}>
+          <RegisterCouse course={selectedCourse} />
+        </div>
+      )}
       <Footer />
     </>
   );

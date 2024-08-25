@@ -6,6 +6,10 @@
   user-select: none;
 }
 
+#root {
+  overflow-y: hidden;
+}
+
 .Header {
   width: 1900px;
   height: 72px;
