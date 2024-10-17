@@ -2,8 +2,9 @@ import React from 'react';
 import './Reviews.css';
 import Reply from './image/reply.png';
 import Avatar from './image/avatar.png'
-
+import Dropdown from './dropdown';
 const Reviews = ({ reviewsData }) => {
+
     return (
         <div className="reviews-container">
             <h3>Comments</h3>
@@ -58,6 +59,8 @@ const Reviews = ({ reviewsData }) => {
                         <div className="comment-actions">
                             <button className="reply-button"><img src={Reply} />Reply</button>
                         </div>
+                        <div className='dropdowntailwinds'><Dropdown /></div>
+
                     </div>
                 ))}
             </div>

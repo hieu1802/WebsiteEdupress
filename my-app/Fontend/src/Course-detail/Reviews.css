@@ -85,6 +85,7 @@
 .comment {
     padding: 15px 0;
     border-top: 1px solid #ddd;
+    position: relative;
 }
 
 .author-info {
@@ -154,4 +155,10 @@
 p.comment-date {
     margin-left: 300px;
     color: #666;
+}
+
+.dropdowntailwinds {
+    position: absolute;
+    right: 010px;
+    top: 20px
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CommentForm.css";
+import axios from 'axios';
 
 const CommentForm = ({ addComment }) => {
   const [name, setName] = useState("");
@@ -18,30 +19,33 @@ const CommentForm = ({ addComment }) => {
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    /*const newReview = {
-            author: name,
-            date: new Date().toLocaleDateString(),
-            comment: comment,
-        };
-        addComment(newReview);*/
+
     const newReview = {
       author: loggedInUser ? loggedInUser.username : name,
       date: new Date().toLocaleDateString(),
       comment: comment,
-      email: loggedInUser ? loggedInUser.email : email,
+      email: loggedInUser ? loggedInUser.email : email
     };
-    addComment(newReview);
+    try {
+      await axios.post('http://localhost:8080/api/v1/user/create-comment', newReview)
+      addComment(newReview);
+      setComment("");
+    } catch (error) {
+      console.error('Error posting comment:', error);
+    }
 
-    // Save the comment to localStorage
-    const savedComments = JSON.parse(localStorage.getItem("comments")) || [];
-    savedComments.push(newReview);
-    localStorage.setItem("comments", JSON.stringify(savedComments));
 
-    // Clear the comment input field
-    setComment("");
+    // // Save the comment to localStorage
+    // const savedComments = JSON.parse(localStorage.getItem("comments")) || [];
+    // savedComments.push(newReview);
+    // localStorage.setItem("comments", JSON.stringify(savedComments));
+
+    // // Clear the comment input field
+    // setComment("");
   };
+
 
   return (
     <form className="comment-form" onSubmit={handleSubmit}>
@@ -49,22 +53,7 @@ const CommentForm = ({ addComment }) => {
       <p>
         Your email address will not be published. Required fields are marked *
       </p>
-      {/* <div className="form-group">
-                <input
-                    type="text"
-                    placeholder="Name*"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="Email*"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-            </div> */}
+
       {!loggedInUser && (
         <div className="form-group">
           <input
@@ -91,16 +80,7 @@ const CommentForm = ({ addComment }) => {
           required
         ></textarea>
       </div>
-      {/* <div className="form-group-checkbox">
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              checked={saveDetails}
-              onChange={(e) => setSaveDetails(e.target.checked)}
-            />
-            Save my name, email in this browser for the next time I comment
-          </label>
-        </div> */}
+
       {!loggedInUser && (
         <div className="form-group-checkbox">
           <label className="checkbox">
