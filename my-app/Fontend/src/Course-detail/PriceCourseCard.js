@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from './image/card.jpg';
 import './CourseDetail.css';
 
 const PriceCourseCard = ({ course, onGetNow }) => {
@@ -7,7 +6,8 @@ const PriceCourseCard = ({ course, onGetNow }) => {
     return (
         <div className="promo-card">
             <div className="promo-image">
-                <img src={course.img} />
+                <img src={course.img} alt={course.courseName} />
+
             </div>
             <div className="promo-content">
                 <div className="promo-pricing">
