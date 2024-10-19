@@ -3,7 +3,6 @@ import img12 from '../img/img12.png'
 
 import RecentPosts from './RecentPosts'
 import { recentPosts } from '../data/blogData';
-import FormAddBlog from './FormAddBlog';
 
 function ContainerBlog() {
 
@@ -39,7 +38,9 @@ function ContainerBlog() {
                 
             </div>
             {isOpen && (
-              <FormAddBlog/>
+        <div className="content">
+          <p>This is the content that is shown when you click the + button.</p>
+        </div>
       )}
             <div className='blogTag'>
               <div className='boxTags'>Tags:</div>
@@ -56,7 +57,7 @@ function ContainerBlog() {
           <div className='category'>
               <div className='categoryNav'>
                   <h4>Category</h4>
-                  <div className='buttonAdd'><span onClick={toggleContent}>Thêm bài viết</span></div>
+                  <div className='buttonAdd'><span>-</span> <span onClick={toggleContent}>+</span></div>
               </div>
               <div className='cateBox'>
                   <p>Commercial</p>

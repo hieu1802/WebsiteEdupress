@@ -3,14 +3,13 @@ import img12 from '../img/img12.png'
 
 import RecentPosts from './RecentPosts'
 import { recentPosts } from '../data/blogData';
-import FormAddBlog from './FormAddBlog';
 
 function ContainerBlog() {
 
   const [mainImage, setMainImage] = useState(img12)
   const [mainTitle, setMainTitle] = useState('Best LearnPress WordPress Theme Collection for 2021');
   const [mainContent, setMainContent] = useState('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis faucibus odio arcu duis dui, adipiscing facilisis. Urna, donec turpis ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis faucibus odio Varius tellus justo odio parturient mauris curabitur lorem in. Pulvinar sit u arcu duis dui egestas volutpat. Quisque nec non amet quis')
-  const [isOpen, setIsOpen] = useState(false); 
+
   
 
   const handleSelectPost = (image, title, content) => {
@@ -18,10 +17,6 @@ function ContainerBlog() {
     setMainTitle(title);
     setMainContent(content) 
   };
-
-
-  const toggleContent = () => setIsOpen(!isOpen);
-
 
 
 
@@ -38,9 +33,6 @@ function ContainerBlog() {
                 <p>{mainContent}</p>
                 
             </div>
-            {isOpen && (
-              <FormAddBlog/>
-      )}
             <div className='blogTag'>
               <div className='boxTags'>Tags:</div>
               <div className='boxTags'>Free Couses</div>
@@ -56,7 +48,7 @@ function ContainerBlog() {
           <div className='category'>
               <div className='categoryNav'>
                   <h4>Category</h4>
-                  <div className='buttonAdd'><span onClick={toggleContent}>Thêm bài viết</span></div>
+                  <div className='buttonAdd'><span>-</span> <span>+</span></div>
               </div>
               <div className='cateBox'>
                   <p>Commercial</p>
@@ -84,7 +76,6 @@ function ContainerBlog() {
               </div>
           </div>
           <RecentPosts posts={recentPosts} onSelectPost={handleSelectPost}/>
-
           <div className='tags'>
                   <h4>Tags</h4>
                   <div className='hastag'>

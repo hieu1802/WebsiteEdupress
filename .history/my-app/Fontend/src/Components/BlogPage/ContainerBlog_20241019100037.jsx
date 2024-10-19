@@ -3,7 +3,6 @@ import img12 from '../img/img12.png'
 
 import RecentPosts from './RecentPosts'
 import { recentPosts } from '../data/blogData';
-import FormAddBlog from './FormAddBlog';
 
 function ContainerBlog() {
 
@@ -39,7 +38,9 @@ function ContainerBlog() {
                 
             </div>
             {isOpen && (
-              <FormAddBlog/>
+              <div className="content">
+                  <span>Tiêu Đề:</span> <input></input>
+              </div>
       )}
             <div className='blogTag'>
               <div className='boxTags'>Tags:</div>

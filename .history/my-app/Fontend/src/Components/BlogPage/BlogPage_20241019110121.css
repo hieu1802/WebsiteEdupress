@@ -113,20 +113,12 @@
 .formInput{
     width: 50% !important;
     height: 30px !important;
-    margin-left:25px !important ;
-    margin-bottom: 30px !important;
+    margin-left:10px !important ;
 }
 
 .textInput{
     width: 50%;
     height: 200px;
-    margin-left: 10px;
-}
-
-.imgInput{
-    margin-left: 15px;
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 .category > h4{
     font-family: Exo;
