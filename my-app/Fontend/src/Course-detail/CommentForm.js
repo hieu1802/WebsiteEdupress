@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./CommentForm.css";
 import axios from 'axios';
 
-const CommentForm = ({ addComment }) => {
+const CommentForm = ({ addComment, courseId }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
@@ -21,15 +21,22 @@ const CommentForm = ({ addComment }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!courseId) {
+      console.error('Course ID is null');
+      return;
+    }
 
     const newReview = {
       author: loggedInUser ? loggedInUser.username : name,
       date: new Date().toLocaleDateString(),
       comment: comment,
-      email: loggedInUser ? loggedInUser.email : email
+      email: loggedInUser ? loggedInUser.email : email,
+      courseId: courseId
     };
+    console.log('New Review:', newReview);
+
     try {
-      await axios.post('http://localhost:8080/api/v1/user/create-comment', newReview)
+      await axios.post(`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
       addComment(newReview);
       setComment("");
     } catch (error) {

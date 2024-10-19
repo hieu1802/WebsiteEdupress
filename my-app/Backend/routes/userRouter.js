@@ -2,7 +2,7 @@ import { createComment } from '../controllers/userController.js';
 import express from 'express';
 const router = express.Router();
 
-router.post('/create-comment', createComment)
+router.post('/create-comment/:courseId', createComment)
 
 
 // router.post('/login', login)

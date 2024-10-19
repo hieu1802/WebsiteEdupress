@@ -1,5 +1,6 @@
-import './tailwindcss.css';
 import React, { useState } from 'react';
+import styles from './Dropdown.module.css'; // Import CSS Module
+
 const Dropdown = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -8,10 +9,10 @@ const Dropdown = () => {
     };
 
     return (
-        <div className='relative w-fit'>
+        <div className={styles.container}>
             <button
                 onClick={toggleDropdown}
-                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className={styles.button} // Sử dụng CSS Module
                 type="button"
             >
                 <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
@@ -21,19 +22,18 @@ const Dropdown = () => {
 
             {/* Dropdown menu */}
             {isOpen && (
-                <div className="absolute top-0 left-9 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-fit dark:bg-gray-700 dark:divide-gray-600">
-                    <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                <div className={styles.menu}>
+                    <ul>
                         <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                            <a href="#" className={styles.menuItem}>Edit</a>
                         </li>
                         <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                            <a href="#" className={styles.menuItem}>Delete</a>
                         </li>
                         <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Hide</a>
+                            <a href="#" className={styles.menuItem}>Hide</a>
                         </li>
                     </ul>
-
                 </div>
             )}
         </div>
