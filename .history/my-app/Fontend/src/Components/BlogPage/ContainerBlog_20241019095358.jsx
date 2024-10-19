@@ -3,7 +3,6 @@ import img12 from '../img/img12.png'
 
 import RecentPosts from './RecentPosts'
 import { recentPosts } from '../data/blogData';
-import FormAddBlog from './FormAddBlog';
 
 function ContainerBlog() {
 
@@ -39,7 +38,9 @@ function ContainerBlog() {
                 
             </div>
             {isOpen && (
-              <FormAddBlog/>
+              <div className="content">
+                  <p>This is the content that is shown when you click the + button.</p>
+              </div>
       )}
             <div className='blogTag'>
               <div className='boxTags'>Tags:</div>
