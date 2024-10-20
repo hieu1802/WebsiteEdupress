@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import Modal from "../Modal/Modal.jsx";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Use axios for API calls
+import axios from "axios";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -31,25 +31,22 @@ function Register() {
     }
 
     try {
-      // Default values for the fields not present in the UI
-      const dateOfBirth = ""; // Default to blank
-      const phoneNumber = ""; // Default to blank
-      const address = ""; // Default to blank
+      const dateOfBirth = "";
+      const phoneNumber = "";
+      const address = "";
 
-      // Make an API call to the backend to register the user
       const response = await axios.post(
         "http://localhost:8080/api/v1/auth/register",
         {
           email,
           userName,
           password,
-          dateOfBirth, // Sending default blank value
-          phoneNumber, // Sending default blank value
-          address, // Sending default blank value
+          dateOfBirth,
+          phoneNumber,
+          address,
         }
       );
 
-      // On success, show modal and redirect to login
       setModal({
         isOpen: true,
         title: "Success",
@@ -60,7 +57,6 @@ function Register() {
         navigate("/login");
       }, 2000);
     } catch (error) {
-      // Handle any errors from the backend (e.g., user already exists)
       setModal({
         isOpen: true,
         title: "Error",
