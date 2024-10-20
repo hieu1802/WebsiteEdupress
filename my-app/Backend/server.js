@@ -7,7 +7,6 @@ import connect from "./config/db.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-
 dotenv.config();
 //connect to DB
 connect();
