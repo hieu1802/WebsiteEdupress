@@ -9,6 +9,7 @@ import {
 import { topCourses } from "../data/FeaturedCoursesDaa";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import img11 from '../img/img11.png'
 
 
 function Container() {
@@ -31,7 +32,7 @@ function Container() {
                 {courses.map((items) => (
                     <div className='boxContent' id={items.id}>
                         <div className='boxImg'>
-                            <img src={`http://localhost:8080/images/${items.img}`} />
+                            <img src={items.img} />
                         </div>
                         <div className='boxTexT'>
                             <div className='text'>

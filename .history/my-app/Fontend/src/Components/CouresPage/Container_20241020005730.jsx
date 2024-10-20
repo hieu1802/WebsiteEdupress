@@ -31,7 +31,7 @@ function Container() {
                 {courses.map((items) => (
                     <div className='boxContent' id={items.id}>
                         <div className='boxImg'>
-                            <img src={`http://localhost:8080/images/${items.img}`} />
+                            <img src={items.img} />
                         </div>
                         <div className='boxTexT'>
                             <div className='text'>

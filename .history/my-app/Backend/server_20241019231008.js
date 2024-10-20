@@ -1,7 +1,6 @@
 import express from 'express';
 import userRouter from './routes/userRouter.js'
 import authRouter from './routes/authRoutes.js'
-import courseRoutes from './routes/courseRoutes.js'
 import cors from 'cors';
 import connect from './config/db.js';
 import path from 'path';
@@ -21,7 +20,6 @@ console.log(path.join(__dirname, 'public/images'));
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/courses', courseRoutes);
 
 
 
