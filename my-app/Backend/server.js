@@ -23,10 +23,6 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/courses", courseRoutes);
 
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/auth", authRouter);
-// app.get("/", getAllUsers); //
-
 app.listen(process.env.PORT, () => {
   console.log("Server is running!");
 });
