@@ -28,7 +28,6 @@ const CourseDetail = () => {
         console.log(response.data);
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu khóa học:', error);
-
       }
 
     }
@@ -38,14 +37,14 @@ const CourseDetail = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments`)
+        const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments/${id}`)
         setReviewsData(response.data)
       } catch (error) {
         console.error('Lỗi khi lấy comments:', error);
       }
     }
     fetchComments();
-  }, [])
+  }, [id])
   // useEffect(() => {
   //   const savedComments = JSON.parse(localStorage.getItem("comments")) || [];
   //   setReviewsData(savedComments);
@@ -72,7 +71,8 @@ const CourseDetail = () => {
         <p>Đang tải dữ liệu khóa học...</p>
       )}
       <TabNavigation reviewsData={reviewsData} />
-      <CommentForm addComment={addComment} />
+      <CommentForm addComment={addComment} courseId={course ? course._id : null} />
+
       {showRegistrationForm && (
         <div ref={registrationFormRef}>
           <RegisterCouse course={course} />

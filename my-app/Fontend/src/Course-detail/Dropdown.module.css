@@ -1,0 +1,83 @@
+/* Dropdown.module.css */
+
+.container {
+    position: relative;
+    width: fit-content;
+}
+
+.button {
+    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    /* tương đương với text-sm */
+    font-weight: 500;
+    /* tương đương với font-medium */
+    text-align: center;
+    color: #1F2937;
+    /* tương đương với text-gray-900 */
+    background-color: #FFFFFF;
+    /* tương đương với bg-white */
+    border-radius: 0.5rem;
+    /* tương đương với rounded-lg */
+}
+
+.button:hover {
+    background-color: #F3F4F6;
+    /* tương đương với hover:bg-gray-100 */
+}
+
+.button:focus {
+    outline: none;
+    ring: 4px;
+    /* tương đương với focus:ring-4 */
+    color: #FFFFFF;
+    /* tương đương với dark:text-white */
+    background-color: #D1D5DB;
+    /* tương đương với dark:bg-gray-300 */
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 2.25rem;
+    /* tương đương với left-9 */
+    z-index: 10;
+    background-color: #FFFFFF;
+    /* tương đương với bg-white */
+    border-radius: 0.5rem;
+    /* tương đương với rounded-lg */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.menu ul {
+    padding: 0.5rem 0;
+    /* tương đương với py-2 */
+    font-size: 0.875rem;
+    /* tương đương với text-sm */
+    color: #4B5563;
+    /* tương đương với text-gray-700 */
+}
+
+.menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    /* tương đương với px-4 py-2 */
+}
+
+.menu a:hover {
+    background-color: #F3F4F6;
+    /* tương đương với hover:bg-gray-100 */
+}
+
+.menuItem {
+    display: block;
+    padding: 0.5rem 1rem;
+    /* tương đương với px-4 py-2 */
+}
+
+.menuItem:hover {
+    background-color: #F3F4F6;
+    /* tương đương với hover:bg-gray-100 */
+}

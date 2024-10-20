@@ -2,7 +2,8 @@ import CommentModel from "../models/comment.js"
 import Course from "../models/Course.js"
 const viewComments = async (req, res) => {
     try {
-        let comments = await CommentModel.find()
+        let courseId = req.params.courseId;
+        let comments = await CommentModel.find({ courseId })
         res.json(comments)
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error });
