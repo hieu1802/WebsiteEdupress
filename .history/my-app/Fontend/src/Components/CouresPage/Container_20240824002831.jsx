@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react'
 import './Container.css'
+import img12 from '../img/img12.png'
 import {
     AiFillSignal,
     AiOutlineUserAdd,
@@ -8,30 +9,18 @@ import {
 } from "react-icons/ai";
 import { topCourses } from "../data/FeaturedCoursesDaa";
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 
 function Container() {
-    const [courses, setCourses] = useState([]);
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/courses')
-            .then(response => {
-                setCourses(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error fetching the courses!', error);
-            });
-    }, []);
 
     return (
         <div className='container'>
             <div className='boxProduct'>
                 <h2>All Courses</h2>
-                {courses.map((items) => (
+                {topCourses.map((items) => (
                     <div className='boxContent' id={items.id}>
                         <div className='boxImg'>
-                            <img src={`http://localhost:8080/images/${items.img}`} />
+                            <img src={items.img} />
                         </div>
                         <div className='boxTexT'>
                             <div className='text'>

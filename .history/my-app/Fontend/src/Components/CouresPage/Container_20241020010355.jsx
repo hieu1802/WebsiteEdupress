@@ -31,7 +31,7 @@ function Container() {
                 {courses.map((items) => (
                     <div className='boxContent' id={items.id}>
                         <div className='boxImg'>
-                            <img src={`http://localhost:8080/images/${items.img}`} />
+                            <img src={items.img} />
                         </div>
                         <div className='boxTexT'>
                             <div className='text'>
@@ -50,7 +50,7 @@ function Container() {
                                     <p>{items.price}</p>
                                     <span>{items.sale}</span>
                                 </div>
-                                <Link to={`/Coursedetail/${items.id}`} state={{ course: items }} className='btnClick'>
+                                <Link to={`/Coursedetail/${items.id}`} state={{ course: courses }} className='btnClick'>
                                     <p>Mua ngay</p>
                                 </Link>
                             </div>
