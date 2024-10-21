@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./Register.css";
 import Modal from "../Modal/Modal.jsx";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Register() {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [modal, setModal] = useState({
@@ -17,17 +18,8 @@ function Register() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-
-    if (!email.includes("@")) {
-      setModal({
-        isOpen: true,
-        title: "Error",
-        message: "Please enter a valid email address",
-      });
-      return;
-    }
 
     if (password !== confirmPassword) {
       setModal({
@@ -38,41 +30,39 @@ function Register() {
       return;
     }
 
-    const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
+    try {
+      const dateOfBirth = "";
+      const phoneNumber = "";
+      const address = "";
 
-    const accountExists = existingAccounts.some(
-      (account) => account.username === username || account.email === email
-    );
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/auth/register",
+        {
+          email,
+          userName,
+          password,
+          dateOfBirth,
+          phoneNumber,
+          address,
+        }
+      );
 
-    if (accountExists) {
+      setModal({
+        isOpen: true,
+        title: "Success",
+        message: "Registration successful!",
+      });
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (error) {
       setModal({
         isOpen: true,
         title: "Error",
-        message: "Username or email already taken",
+        message: error.response?.data?.message || "Registration failed",
       });
-      return;
     }
-
-    const newAccount = { email, username, password, role: "user" };
-    localStorage.setItem(
-      "accounts",
-      JSON.stringify([...existingAccounts, newAccount])
-    );
-
-    setModal({
-      isOpen: true,
-      title: "Success",
-      message: "Registration successful!",
-    });
-
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
-
-    setEmail("");
-    setUsername("");
-    setPassword("");
-    setConfirmPassword("");
   };
 
   return (
@@ -97,7 +87,7 @@ function Register() {
               id="username"
               name="username"
               placeholder="Username*"
-              value={username}
+              value={userName}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
