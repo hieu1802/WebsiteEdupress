@@ -31,13 +31,16 @@ const CommentForm = ({ addComment, courseId }) => {
       date: new Date().toLocaleDateString(),
       comment: comment,
       email: loggedInUser ? loggedInUser.email : email,
-      courseId: courseId
+      courseId: courseId,
+      isHidden: false
     };
     console.log('New Review:', newReview);
 
     try {
-      await axios.post(`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
-      addComment(newReview);
+      const response = await axios.post(`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
+      const createdComment = response.data
+      addComment(createdComment);
+
       setComment("");
     } catch (error) {
       console.error('Error posting comment:', error);

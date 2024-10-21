@@ -1,9 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Reviews.css';
 import Reply from './image/reply.png';
 import Avatar from './image/avatar.png'
 import Dropdown from './dropdown';
+import styles from './Dropdown.module.css';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 const Reviews = ({ reviewsData }) => {
+    const [reviews, setReviews] = useState(reviewsData);
+    const [editingCommentId, setEditingCommentId] = useState(null); // Trạng thái chỉnh sửa
+    const [editedComment, setEditedComment] = useState(''); // Lưu nội dung bình luận chỉnh sửa
+    useEffect(() => {
+        setReviews(reviewsData);
+    }, [reviewsData]);
+
+    // Hàm kích hoạt chế độ chỉnh sửa
+    const handleEditClick = (commentId, commentText) => {
+        if (editingCommentId === commentId) {
+            // Nếu đang chỉnh sửa và nhấn lại nút Edit thì tắt chế độ chỉnh sửa
+            setEditingCommentId(null);
+        } else {
+            // Nếu không chỉnh sửa thì bật chế độ chỉnh sửa cho comment này
+            setEditingCommentId(commentId);
+            setEditedComment(commentText); // Điền sẵn nội dung cũ của comment
+        }
+    };
+
+    const handleSaveClick = async (commentId) => {
+        try {
+            const response = await axios.put(`http://localhost:8080/api/v1/user/update-comment/${commentId}`, { comment: editedComment });
+
+            if (response.status === 200) { // Kiểm tra xem API có trả về thành công không
+                setReviews((prevReviews) =>
+                    prevReviews.map((review) =>
+                        review._id === commentId ? { ...review, comment: editedComment } : review
+                    )
+                );
+                setEditingCommentId(null); // Dừng chế độ chỉnh sửa
+            }
+        } catch (error) {
+            console.error('Lỗi khi cập nhật comment:', error);
+        }
+    };
+    const handleHideClick = async (commentId) => {
+        try {
+            const response = await axios.put(`http://localhost:8080/api/v1/user/hide-comment/${commentId}`);
+
+            // Kiểm tra phản hồi từ server
+            // Cập nhật lại danh sách reviews để ẩn comment trên giao diện
+
+            if (response.status === 200) { // Kiểm tra phản hồi từ server
+                // Cập nhật lại danh sách reviews để ẩn comment trên giao diện
+                setReviews((prevReviews) =>
+                    prevReviews.filter((review) => review._id !== commentId)
+                );
+            }
+        } catch (error) {
+            console.error('Lỗi khi ẩn comment:', error);
+        }
+    };
 
     return (
         <div className="reviews-container">
@@ -46,23 +102,39 @@ const Reviews = ({ reviewsData }) => {
                 </div>
             </div>
             <div className="comments-list">
-                {reviewsData.map((review, index) => (
-                    <div className="comment" key={index}>
-                        <div className="author-info">
-                            <img src={Avatar} className="author-avatar" />
-                            <div className='name-date'>
-                                <p className="author-name">{review.author}</p>
-                                <p className="comment-date">{review.date}</p>
+                {reviews
+                    .filter((review) => !review.isHidden)
+                    .map((review) => (
+                        <div className="comment" key={review._id}>
+                            <div className="author-info">
+                                <img src={Avatar} className="author-avatar" />
+                                <div className='name-date'>
+                                    <p className="author-name">{review.author}</p>
+                                    <p className="comment-date">{review.date}</p>
+                                </div>
                             </div>
-                        </div>
-                        <p className="comment-text">{review.comment}</p>
-                        <div className="comment-actions">
-                            <button className="reply-button"><img src={Reply} />Reply</button>
-                        </div>
-                        <div className='dropdowntailwinds'><Dropdown /></div>
+                            {editingCommentId === review._id ? (
+                                <div>
+                                    <input
+                                        type="text"
+                                        value={editedComment}
+                                        onChange={(e) => setEditedComment(e.target.value)}
+                                        className={styles.inputItem}
+                                    />
+                                    <button onClick={() => handleSaveClick(review._id)}><FontAwesomeIcon icon={faCheck} /></button>
+                                </div>
+                            ) : (
+                                <span className={styles.commentItem}>{review.comment}</span>
+                            )}
+                            <div className="comment-actions">
+                                <button className="reply-button"><img src={Reply} />Reply</button>
+                            </div>
+                            <div className='dropdowntailwinds'><Dropdown
+                                onEdit={() => handleEditClick(review._id, review.comment)}
+                                onHide={() => handleHideClick(review._id)} /></div>
 
-                    </div>
-                ))}
+                        </div>
+                    ))}
             </div>
 
         </div>

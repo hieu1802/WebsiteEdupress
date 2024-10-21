@@ -37,7 +37,7 @@ const CourseDetail = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments/${id}`)
+        const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments/${id}?isHidden=false`)
         setReviewsData(response.data)
       } catch (error) {
         console.error('Lỗi khi lấy comments:', error);
@@ -50,8 +50,8 @@ const CourseDetail = () => {
   //   setReviewsData(savedComments);
   // }, []);
 
-  const addComment = (newReview) => {
-    setReviewsData((prevReviews) => [...prevReviews, newReview]);
+  const addComment = (createdComment) => {
+    setReviewsData((prevReviews) => [...prevReviews.filter((review) => !review.isHidden), createdComment]);
   };
   const handleGetNowClick = () => {
     setShowRegistrationForm(true);

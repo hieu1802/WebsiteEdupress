@@ -81,3 +81,18 @@
     background-color: #F3F4F6;
     /* tương đương với hover:bg-gray-100 */
 }
+
+.commentItem {
+    color: black;
+    font-size: 18px;
+    margin: 15px;
+}
+
+.inputItem {
+    all: unset;
+    height: 45px;
+    width: 80%;
+    font-size: 18px;
+    border: 1px solid gray;
+    padding: 0 0 0 5px;
+}

@@ -111,6 +111,8 @@
 
 .comment-text {
     margin: 10px 0;
+    width: fit-content;
+    font-size: 20px;
 }
 
 .comment-actions {

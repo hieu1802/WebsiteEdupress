@@ -9,7 +9,8 @@ const commentSchema = new Schema({
     postId: { type: String, ref: 'post' },
     userId: { type: String, ref: 'user' },
     comment: { type: String, required: true },
-    courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'courses', required: true }
+    courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'courses', required: true },
+    isHidden: { type: Boolean, default: false }
 }, { timestamps: true });
 
 const CommentModel = mongoose.model('comments', commentSchema);
