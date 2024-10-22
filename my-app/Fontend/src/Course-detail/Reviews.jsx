@@ -60,7 +60,17 @@ const Reviews = ({ reviewsData }) => {
             console.error('Lỗi khi ẩn comment:', error);
         }
     };
-
+    const handleDeleteClick = async (commentId) => {
+        try {
+            const response = await axios.delete(`http://localhost:8080/api/v1/user/delete-comment/${commentId}`);
+            if (response.status === 200) {
+                // Cập nhật lại danh sách comments trong state sau khi xóa
+                setReviews((prevReviews) => prevReviews.filter((review) => review._id !== commentId));
+            }
+        } catch (error) {
+            console.error('Lỗi khi xóa comment:', error);
+        }
+    };
     return (
         <div className="reviews-container">
             <h3>Comments</h3>
@@ -131,7 +141,8 @@ const Reviews = ({ reviewsData }) => {
                             </div>
                             <div className='dropdowntailwinds'><Dropdown
                                 onEdit={() => handleEditClick(review._id, review.comment)}
-                                onHide={() => handleHideClick(review._id)} /></div>
+                                onHide={() => handleHideClick(review._id)}
+                                onDelete={() => handleDeleteClick(review._id)} /></div>
 
                         </div>
                     ))}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Dropdown.module.css'; // Import CSS Module
 
-const Dropdown = ({ onEdit, onHide }) => {
+const Dropdown = ({ onEdit, onHide, onDelete }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -29,7 +29,7 @@ const Dropdown = ({ onEdit, onHide }) => {
                             {/* <button onClick={onEdit} className={styles.menuItem}>Edit</button> */}
                         </li>
                         <li>
-                            <a href="#" className={styles.menuItem}>Delete</a>
+                            <a onClick={onDelete} className={styles.menuItem}>Delete</a>
                         </li>
                         <li>
                             <a onClick={onHide} className={styles.menuItem}>Hide</a>

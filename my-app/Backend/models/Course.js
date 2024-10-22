@@ -8,9 +8,7 @@ const courseSchema = new mongoose.Schema({
     sale: { type: String },
     lesson: { type: String },
     author: { type: String },
-    courseName: { type: String },
-    id: { type: String },
-
+    courseName: { type: String }
 });
 
 const Course = mongoose.model('Course', courseSchema);
