@@ -10,7 +10,7 @@ const DeleteAccount = () => {
   const [modal, setModal] = useState({ isOpen: false, title: "", message: "" });
   const navigate = useNavigate();
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (confirm) {
       const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
       if (!loggedInUser) {
@@ -22,23 +22,47 @@ const DeleteAccount = () => {
         return;
       }
 
-      const allAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
-      const updatedAccounts = allAccounts.filter(
-        (account) => account.username !== loggedInUser.username
-      );
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/v1/user/delete-user/${loggedInUser._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${loggedInUser.token}`,
+            },
+          }
+        );
 
-      localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-      localStorage.removeItem("loggedInUser");
+        if (!response.ok) {
+          const result = await response.json();
+          setModal({
+            isOpen: true,
+            title: "Error",
+            message: result.message || "Failed to delete account",
+          });
+          return;
+        }
 
-      setModal({
-        isOpen: true,
-        title: "Success",
-        message: "Your account have been deleted.",
-      });
+        localStorage.removeItem("loggedInUser");
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+        setModal({
+          isOpen: true,
+          title: "Success",
+          message: "Your account has been deleted.",
+        });
+
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } catch (error) {
+        console.error("Error deleting account:", error);
+        setModal({
+          isOpen: true,
+          title: "Error",
+          message: "An error occurred while deleting the account.",
+        });
+      }
     } else {
       setModal({
         isOpen: true,
@@ -50,46 +74,46 @@ const DeleteAccount = () => {
 
   return (
     <>
-    <Header/>
-    <div className="delete-account-page">
-      <h2>Delete Your Account</h2>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleDelete();
-        }}
-      >
-        <div className="form-group">
-          <label htmlFor="reason">Reason for Deleting Account:</label>
-          <textarea
-            id="reason"
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group-checkbox">
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              checked={confirm}
-              onChange={(e) => setConfirm(e.target.checked)}
+      <Header />
+      <div className="delete-account-page">
+        <h2>Delete Your Account</h2>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleDelete();
+          }}
+        >
+          <div className="form-group">
+            <label htmlFor="reason">Reason for Deleting Account:</label>
+            <textarea
+              id="reason"
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              required
             />
-            I confirm that I want to delete my account.
-          </label>
-        </div>
-        <button type="submit" className="delete-button">
-          Delete Account
-        </button>
-      </form>
+          </div>
+          <div className="form-group-checkbox">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                checked={confirm}
+                onChange={(e) => setConfirm(e.target.checked)}
+              />
+              I confirm that I want to delete my account.
+            </label>
+          </div>
+          <button type="submit" className="delete-button">
+            Delete Account
+          </button>
+        </form>
 
-      <Modal
-        isOpen={modal.isOpen}
-        onClose={() => setModal({ isOpen: false, title: "", message: "" })}
-        title={modal.title}
-        message={modal.message}
-      />
-    </div>
+        <Modal
+          isOpen={modal.isOpen}
+          onClose={() => setModal({ isOpen: false, title: "", message: "" })}
+          title={modal.title}
+          message={modal.message}
+        />
+      </div>
     </>
   );
 };

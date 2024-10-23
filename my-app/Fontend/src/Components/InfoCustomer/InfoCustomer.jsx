@@ -6,7 +6,7 @@ import Modal from "../Modal/Modal";
 function InfoCustomer() {
   const [userInfo, setUserInfo] = useState({
     email: "",
-    username: "",
+    userName: "",
     password: "",
     dateOfBirth: "",
     phoneNumber: "",
@@ -74,8 +74,8 @@ function InfoCustomer() {
           <label>Username: </label>
           <input
             type="text"
-            name="username"
-            value={userInfo.username}
+            name="userName"
+            value={userInfo.userName}
             onChange={handleChange}
             required
           />

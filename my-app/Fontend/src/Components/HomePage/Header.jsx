@@ -18,7 +18,7 @@ function Header({ courses }) {
     const storedUser = localStorage.getItem("loggedInUser");
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      setLoggedInUser(user.username);
+      setLoggedInUser(user.userName);
     }
   }, []);
 
