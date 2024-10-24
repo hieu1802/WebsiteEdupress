@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Register.css";
 import Modal from "../Modal/Modal.jsx";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -35,32 +34,48 @@ function Register() {
       const phoneNumber = "";
       const address = "";
 
-      const response = await axios.post(
+      const response = await fetch(
         "http://localhost:8080/api/v1/auth/register",
         {
-          email,
-          userName,
-          password,
-          dateOfBirth,
-          phoneNumber,
-          address,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            userName,
+            password,
+            dateOfBirth,
+            phoneNumber,
+            address,
+          }),
         }
       );
 
-      setModal({
-        isOpen: true,
-        title: "Success",
-        message: "Registration successful!",
-      });
+      const data = await response.json();
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+      if (response.ok) {
+        setModal({
+          isOpen: true,
+          title: "Success",
+          message: "Registration successful!",
+        });
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      } else {
+        setModal({
+          isOpen: true,
+          title: "Error",
+          message: data.message || "Registration failed",
+        });
+      }
     } catch (error) {
       setModal({
         isOpen: true,
         title: "Error",
-        message: error.response?.data?.message || "Registration failed",
+        message: "Registration failed",
       });
     }
   };

@@ -5,7 +5,7 @@ function AdminPage() {
   const [accounts, setAccounts] = useState([]);
   const [newAccount, setNewAccount] = useState({
     email: "",
-    username: "",
+    userName: "",
     password: "",
     role: "user",
   });
@@ -13,59 +13,52 @@ function AdminPage() {
   const [editingAccount, setEditingAccount] = useState(null);
 
   useEffect(() => {
-    const storedAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
+    const fetchAccounts = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/v1/auth/login"); //  or /admin-account
+        const data = await response.json();
+        setAccounts(data);
+      } catch (error) {
+        console.error("Error fetching accounts:", error);
+      }
+    };
 
-    const adminAccountExists = storedAccounts.some(
-      (account) => account.username === "admin"
-    );
-
-    if (!adminAccountExists) {
-      const adminAccount = {
-        email: "admin@example.com",
-        username: "admin",
-        password: "admin",
-        role: "admin",
-      };
-      storedAccounts.push(adminAccount);
-      localStorage.setItem("accounts", JSON.stringify(storedAccounts));
-    }
-
-    setAccounts(storedAccounts);
+    fetchAccounts();
   }, []);
 
   const handleAddAccount = () => {
     const updatedAccounts = [...accounts, newAccount];
     setAccounts(updatedAccounts);
     localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-    setNewAccount({ email: "", username: "", password: "", role: "user" });
+    setNewAccount({ email: "", userName: "", password: "", role: "user" });
   };
 
-  const handleDeleteAccount = (username) => {
-    if (username === "admin") {
+  const handleDeleteAccount = (userName) => {
+    if (userName === "admin") {
       alert("Cannot delete the admin account");
       return;
     }
     const updatedAccounts = accounts.filter(
-      (account) => account.username !== username
+      (account) => account.userName !== userName
     );
     setAccounts(updatedAccounts);
     localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
   };
 
   const handleUpdateAccount = () => {
-    const isDuplicateUsername = accounts.some(
+    const isDuplicateUserName = accounts.some(
       (account) =>
-        account.username === editingAccount.username &&
-        account.username !== editingAccount.originalUsername
+        account.userName === editingAccount.userName &&
+        account.userName !== editingAccount.originalUserName
     );
 
-    if (isDuplicateUsername) {
+    if (isDuplicateUserName) {
       alert("This username is already taken");
       return;
     }
 
     const updatedAccounts = accounts.map((account) =>
-      account.username === editingAccount.originalUsername
+      account.userName === editingAccount.originalUserName
         ? editingAccount
         : account
     );
@@ -75,13 +68,13 @@ function AdminPage() {
     setEditingAccount(null);
   };
 
-  const handleRoleChange = (username, role) => {
-    if (username === "admin") {
+  const handleRoleChange = (userName, role) => {
+    if (userName === "admin") {
       alert("Cannot change the role of the admin account");
       return;
     }
     const updatedAccounts = accounts.map((account) =>
-      account.username === username ? { ...account, role } : account
+      account.userName === userName ? { ...account, role } : account
     );
     setAccounts(updatedAccounts);
     localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
@@ -103,16 +96,16 @@ function AdminPage() {
         </thead>
         <tbody>
           {accounts.map((account) => (
-            <tr key={account.username}>
+            <tr key={account.userName}>
               <td>{account.email}</td>
-              <td>{account.username}</td>
+              <td>{account.userName}</td>
               <td>
                 <select
                   value={account.role}
                   onChange={(e) =>
-                    handleRoleChange(account.username, e.target.value)
+                    handleRoleChange(account.userName, e.target.value)
                   }
-                  disabled={account.username === "admin"}
+                  disabled={account.userName === "admin"}
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
@@ -123,15 +116,15 @@ function AdminPage() {
                   onClick={() =>
                     setEditingAccount({
                       ...account,
-                      originalUsername: account.username,
+                      originalUserName: account.userName,
                     })
                   }
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDeleteAccount(account.username)}
-                  disabled={account.username === "admin"}
+                  onClick={() => handleDeleteAccount(account.userName)}
+                  disabled={account.userName === "admin"}
                 >
                   Delete
                 </button>
@@ -162,17 +155,17 @@ function AdminPage() {
         <input
           type="text"
           placeholder="Username"
-          value={editingAccount ? editingAccount.username : newAccount.username}
+          value={editingAccount ? editingAccount.userName : newAccount.userName}
           onChange={(e) =>
             editingAccount
               ? setEditingAccount({
                   ...editingAccount,
-                  username: e.target.value,
+                  userName: e.target.value,
                 })
-              : setNewAccount({ ...newAccount, username: e.target.value })
+              : setNewAccount({ ...newAccount, userName: e.target.value })
           }
           required
-          disabled={editingAccount && editingAccount.username === "admin"}
+          disabled={editingAccount && editingAccount.userName === "admin"}
         />
         <div className="input-group">
           <input
