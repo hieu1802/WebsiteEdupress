@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./CommentForm.css";
 import axios from 'axios';
+import styles from './Dropdown.module.css'; // Import CSS Module
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
 
 const CommentForm = ({ addComment, courseId }) => {
   const [name, setName] = useState("");
@@ -8,7 +11,7 @@ const CommentForm = ({ addComment, courseId }) => {
   const [comment, setComment] = useState("");
   const [saveDetails, setSaveDetails] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
-
+  const [image, setImage] = useState(null);
   useEffect(() => {
     const storedUser = localStorage.getItem("loggedInUser");
     if (storedUser) {
@@ -89,6 +92,15 @@ const CommentForm = ({ addComment, courseId }) => {
           onChange={(e) => setComment(e.target.value)}
           required
         ></textarea>
+        <label htmlFor="input-file" style={{ cursor: 'pointer' }}>
+          <FontAwesomeIcon icon={faImage} size="2x" />
+          <input
+            type="file"
+            id="input-file"
+            accept="image/*"
+            style={{ display: 'none' }} // Ẩn input file
+          />
+        </label>
       </div>
 
       {!loggedInUser && (

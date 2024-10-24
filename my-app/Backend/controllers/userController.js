@@ -2,10 +2,14 @@ import CommentModel from "../models/comment.js";
 import User from "../models/User.js";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import multer from "multer";
+import { storage } from "../config/cloundinary.js";
+const upload = multer({ storage });
 const createComment = async (req, res) => {
   try {
     let { comment, author, email } = req.body;
     let courseId = req.params.courseId;
+    const image = req.file ? req.file.path : null;
 
     if (!mongoose.Types.ObjectId.isValid(courseId)) {
       return res.status(400).json({ error: "Invalid courseId" });
@@ -15,6 +19,7 @@ const createComment = async (req, res) => {
       comment,
       author,
       email,
+      image,
       date: new Date().toLocaleDateString(),
       isHidden: false
     })

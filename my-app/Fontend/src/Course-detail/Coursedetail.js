@@ -19,7 +19,14 @@ const CourseDetail = () => {
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const registrationFormRef = useRef(null);
   const { id } = useParams();
-
+  const fetchComments = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments/${id}?isHidden=false`)
+      setReviewsData(response.data)
+    } catch (error) {
+      console.error('Lỗi khi lấy comments:', error);
+    }
+  }
   useEffect(() => {
     const fetchCourse = async () => {
       try {
@@ -35,14 +42,14 @@ const CourseDetail = () => {
   }, [id])
 
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments/${id}?isHidden=false`)
-        setReviewsData(response.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy comments:', error);
-      }
-    }
+    // const fetchComments = async () => {
+    //   try {
+    //     const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments/${id}?isHidden=false`)
+    //     setReviewsData(response.data)
+    //   } catch (error) {
+    //     console.error('Lỗi khi lấy comments:', error);
+    //   }
+    // }
     fetchComments();
   }, [id])
   // useEffect(() => {
@@ -70,7 +77,7 @@ const CourseDetail = () => {
       ) : (
         <p>Đang tải dữ liệu khóa học...</p>
       )}
-      <TabNavigation reviewsData={reviewsData} />
+      <TabNavigation reviewsData={reviewsData} fetchComments={fetchComments} />
       <CommentForm addComment={addComment} courseId={course ? course._id : null} />
 
       {showRegistrationForm && (

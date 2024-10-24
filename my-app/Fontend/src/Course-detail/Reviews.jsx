@@ -7,7 +7,7 @@ import styles from './Dropdown.module.css';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-const Reviews = ({ reviewsData }) => {
+const Reviews = ({ reviewsData, fetchComments }) => {
     const [reviews, setReviews] = useState(reviewsData);
     const [editingCommentId, setEditingCommentId] = useState(null); // Trạng thái chỉnh sửa
     const [editedComment, setEditedComment] = useState(''); // Lưu nội dung bình luận chỉnh sửa
@@ -52,9 +52,7 @@ const Reviews = ({ reviewsData }) => {
 
             if (response.status === 200) { // Kiểm tra phản hồi từ server
                 // Cập nhật lại danh sách reviews để ẩn comment trên giao diện
-                setReviews((prevReviews) =>
-                    prevReviews.filter((review) => review._id !== commentId)
-                );
+                fetchComments();
             }
         } catch (error) {
             console.error('Lỗi khi ẩn comment:', error);
@@ -65,7 +63,7 @@ const Reviews = ({ reviewsData }) => {
             const response = await axios.delete(`http://localhost:8080/api/v1/user/delete-comment/${commentId}`);
             if (response.status === 200) {
                 // Cập nhật lại danh sách comments trong state sau khi xóa
-                setReviews((prevReviews) => prevReviews.filter((review) => review._id !== commentId));
+                fetchComments();
             }
         } catch (error) {
             console.error('Lỗi khi xóa comment:', error);

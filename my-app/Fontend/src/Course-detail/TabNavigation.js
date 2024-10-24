@@ -26,7 +26,7 @@ const curriculumData = [
 ];
 
 
-const TabNavigation = ({ reviewsData }) => {
+const TabNavigation = ({ reviewsData, fetchComments }) => {
     const [activeTab, setActiveTab] = useState('overview');
     const [tabContent, setTabContent] = useState('');
 
@@ -45,7 +45,7 @@ const TabNavigation = ({ reviewsData }) => {
                     setTabContent(<Instructor />);
                     break;
                 case 'reviews':
-                    setTabContent(<Reviews reviewsData={reviewsData} />);
+                    setTabContent(<Reviews reviewsData={reviewsData} fetchComments={fetchComments} />);
                     break;
                 case 'faqs': // Thêm trường hợp cho tab FAQs
                     setTabContent(<FAQs />);
