@@ -76,15 +76,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-const forgotPassword = async (req, res) => {
-  try {
-    const { email } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: "Email not found" });
-
-    res.status(200).json({ message: "Password reset link sent to email" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-export { viewComments, getCourse, registerUser, loginUser, forgotPassword };
+export { viewComments, getCourse, registerUser, loginUser };
