@@ -21,45 +21,55 @@ function Login() {
     }
   }, []);
 
-  const handleLogin = (e) => {
-    localStorage.setItem("username", e);
-
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
-
-    const account = existingAccounts.find(
-      (account) =>
-        (account.username === username || account.email === username) &&
-        account.password === password
-    );
-
-    if (account) {
-      console.log("Login successful");
-      setModal({
-        isOpen: true,
-        title: "Success",
-        message: "Login successful!",
+    try {
+      const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userName: username, password }),
       });
-      localStorage.setItem("loggedInUser", JSON.stringify(account));
 
-      if (rememberMe) {
-        localStorage.setItem("savedUsername", username);
-      } else {
-        localStorage.removeItem("savedUsername");
-      }
+      const data = await response.json();
 
-      if (account.role === "admin") {
-        navigate("/admin");
+      if (response.ok) {
+        console.log("Login successful", data);
+        setModal({
+          isOpen: true,
+          title: "Success",
+          message: "Login successful!",
+        });
+
+        localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+
+        if (rememberMe) {
+          localStorage.setItem("savedUsername", username);
+        } else {
+          localStorage.removeItem("savedUsername");
+        }
+
+        if (data.user.role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       } else {
-        navigate("/");
+        setModal({
+          isOpen: true,
+          title: "Error",
+          message: data.message || "Invalid username or password",
+        });
       }
-    } else {
+    } catch (error) {
       setModal({
         isOpen: true,
         title: "Error",
-        message: "Invalid username or email and password",
+        message: "Server error occurred. Please try again later.",
       });
+      console.error("Login error:", error);
     }
   };
 
