@@ -4,30 +4,38 @@ import "./LostPass.css";
 import { useNavigate } from "react-router-dom";
 
 function LostPass() {
-  const [usernameOrEmail, setUsernameOrEmail] = useState("");
+  const [userNameOrEmail, setUserNameOrEmail] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [modal, setModal] = useState({ isOpen: false, title: "", message: "" });
   const navigate = useNavigate();
 
-  const handleLostPass = (e) => {
+  const handleLostPass = async (e) => {
     e.preventDefault();
 
-    const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
+    try {
+      const response = await fetch(
+        "http://localhost:8080/api/v1/user/lost-pass",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userNameOrEmail }),
+        }
+      );
 
-    const accountExists = existingAccounts.some(
-      (account) =>
-        account.username === usernameOrEmail ||
-        account.email === usernameOrEmail
-    );
-
-    if (accountExists) {
-      setIsVerified(true);
-    } else {
-      setModal({ isOpen: true, title: "Error", message: "Account not found" });
+      const data = await response.json();
+      if (response.ok) {
+        setIsVerified(true);
+      } else {
+        setModal({ isOpen: true, title: "Error", message: data.message });
+      }
+    } catch (error) {
+      setModal({ isOpen: true, title: "Error", message: "Server error" });
     }
   };
 
-  const handleResetPassword = (newPassword, confirmPassword) => {
+  const handleResetPassword = async (newPassword, confirmPassword) => {
     if (newPassword !== confirmPassword) {
       setModal({
         isOpen: true,
@@ -37,30 +45,34 @@ function LostPass() {
       return;
     }
 
-    const existingAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
-    const updatedAccounts = existingAccounts.map((account) => {
-      if (
-        account.username === usernameOrEmail ||
-        account.email === usernameOrEmail
-      ) {
-        return { ...account, password: newPassword };
+    try {
+      const response = await fetch(
+        "http://localhost:8080/api/v1/user/reset-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userNameOrEmail, newPassword }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        setModal({
+          isOpen: true,
+          title: "Success",
+          message: "Password reset successful!",
+        });
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      } else {
+        setModal({ isOpen: true, title: "Error", message: data.message });
       }
-      return account;
-    });
-
-    localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-    setModal({
-      isOpen: true,
-      title: "Success",
-      message: "Password reset successful!",
-    });
-
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
-
-    setUsernameOrEmail("");
-    setIsVerified(false);
+    } catch (error) {
+      setModal({ isOpen: true, title: "Error", message: "Server error" });
+    }
   };
 
   return (
@@ -74,11 +86,11 @@ function LostPass() {
             <div className="input-group">
               <input
                 type="text"
-                id="usernameOrEmail"
-                name="usernameOrEmail"
+                id="userNameOrEmail"
+                name="userNameOrEmail"
                 placeholder="Enter your Email or Username*"
-                value={usernameOrEmail}
-                onChange={(e) => setUsernameOrEmail(e.target.value)}
+                value={userNameOrEmail}
+                onChange={(e) => setUserNameOrEmail(e.target.value)}
                 required
               />
             </div>

@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [modal, setModal] = useState({ isOpen: false, title: "", message: "" });
@@ -13,10 +13,10 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedUsername = localStorage.getItem("savedUsername");
+    const savedUserName = localStorage.getItem("savedUserName");
 
-    if (savedUsername) {
-      setUsername(savedUsername);
+    if (savedUserName) {
+      setUserName(savedUserName);
       setRememberMe(true);
     }
   }, []);
@@ -30,7 +30,7 @@ function Login() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userName: username, password }),
+        body: JSON.stringify({ userName: userName, password }),
       });
 
       const data = await response.json();
@@ -46,16 +46,18 @@ function Login() {
         localStorage.setItem("loggedInUser", JSON.stringify(data.user));
 
         if (rememberMe) {
-          localStorage.setItem("savedUsername", username);
+          localStorage.setItem("savedUserName", userName);
         } else {
-          localStorage.removeItem("savedUsername");
+          localStorage.removeItem("savedUserName");
         }
 
-        if (data.user.role === "admin") {
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
+        setTimeout(() => {
+          if (data.user.role === "admin") {
+            navigate("/admin");
+          } else {
+            navigate("/");
+          }
+        }, 2000);
       } else {
         setModal({
           isOpen: true,
@@ -81,11 +83,11 @@ function Login() {
           <div class="input-group">
             <input
               type="text"
-              id="username"
-              name="username"
+              id="userName"
+              name="userName"
               placeholder="Email or username*"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               required
             />
           </div>
