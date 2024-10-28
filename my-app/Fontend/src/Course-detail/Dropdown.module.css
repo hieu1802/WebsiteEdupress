@@ -30,12 +30,8 @@
 
 .button:focus {
     outline: none;
-    ring: 4px;
-    /* tương đương với focus:ring-4 */
     color: #FFFFFF;
-    /* tương đương với dark:text-white */
     background-color: #D1D5DB;
-    /* tương đương với dark:bg-gray-300 */
 }
 
 .menu {
