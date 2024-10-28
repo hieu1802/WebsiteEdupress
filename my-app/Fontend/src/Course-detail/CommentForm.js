@@ -6,57 +6,77 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 
 const CommentForm = ({ addComment, courseId }) => {
-  const [name, setName] = useState("");
+  const [userName, setuserName] = useState("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
   const [saveDetails, setSaveDetails] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const storedUser = localStorage.getItem("loggedInUser");
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      setName(user.username);
+      setuserName(user.userName);
       setEmail(user.email);
       setLoggedInUser(user); //
     }
   }, []);
-
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);  // Lưu file vào state
+      console.log('Image selected:', file);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!courseId) {
       console.error('Course ID is null');
       return;
     }
-
-    const newReview = {
-      author: loggedInUser ? loggedInUser.username : name,
-      date: new Date().toLocaleDateString(),
-      comment: comment,
-      email: loggedInUser ? loggedInUser.email : email,
-      courseId: courseId,
-      isHidden: false
-    };
-    console.log('New Review:', newReview);
-
+    setLoading(true);
     try {
+      let imageUrl = '';
+      // Nếu người dùng đã chọn ảnh thì tải lên Cloudinary
+      if (image) {
+        const formData = new FormData();
+        formData.append('file', image);
+        formData.append('upload_preset', 'wien_image'); // Thay thế bằng upload_preset của bạn
+
+        try {
+          const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dv5vt0g3q/image/upload', formData);
+          imageUrl = cloudinaryResponse.data.secure_url;
+          console.log('Image uploaded successfully:', imageUrl);
+        } catch (error) {
+          console.error('Error uploading image to Cloudinary:', error);
+          return; // Dừng lại nếu lỗi upload ảnh
+        }
+      }
+
+      const newReview = {
+        author: loggedInUser ? loggedInUser.userName : userName,
+        date: new Date().toLocaleDateString(),
+        comment: comment,
+        email: loggedInUser ? loggedInUser.email : email,
+        image: imageUrl || null,
+        courseId: courseId,
+        isHidden: false
+      };
+      console.log('New Review:', newReview);
+
+
       const response = await axios.post(`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
       const createdComment = response.data
       addComment(createdComment);
-
       setComment("");
+      setImage(null);
     } catch (error) {
       console.error('Error posting comment:', error);
+    } finally {
+      setLoading(false); // Kết thúc quá trình tải lên
     }
 
-
-    // // Save the comment to localStorage
-    // const savedComments = JSON.parse(localStorage.getItem("comments")) || [];
-    // savedComments.push(newReview);
-    // localStorage.setItem("comments", JSON.stringify(savedComments));
-
-    // // Clear the comment input field
-    // setComment("");
   };
 
 
@@ -72,8 +92,8 @@ const CommentForm = ({ addComment, courseId }) => {
           <input
             type="text"
             placeholder="Name*"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={userName}
+            onChange={(e) => setuserName(e.target.value)}
             required
           />
           <input
@@ -99,26 +119,44 @@ const CommentForm = ({ addComment, courseId }) => {
             id="input-file"
             accept="image/*"
             style={{ display: 'none' }} // Ẩn input file
+            onChange={handleImageChange}
           />
         </label>
+        {image && (
+          <div style={{ position: 'relative' }}>
+            <img
+              src={URL.createObjectURL(image)} // Tạo URL tạm thời cho file
+              alt="Preview"
+              style={{ width: '100px', height: '100px' }} // Bạn có thể tùy chỉnh kích thước
+            />
+            <button className={styles.closeButton}
+              onClick={() => setImage(null)} // Khi nhấn, sẽ xóa hình ảnh
+
+            >
+              X
+            </button>
+          </div>
+        )}
       </div>
 
-      {!loggedInUser && (
-        <div className="form-group-checkbox">
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              checked={saveDetails}
-              onChange={(e) => setSaveDetails(e.target.checked)}
-            />
-            Save my name, email in this browser for the next time I comment
-          </label>
-        </div>
-      )}
+      {
+        !loggedInUser && (
+          <div className="form-group-checkbox">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                checked={saveDetails}
+                onChange={(e) => setSaveDetails(e.target.checked)}
+              />
+              Save my name, email in this browser for the next time I comment
+            </label>
+          </div>
+        )
+      }
       <button type="submit" className="submit-button">
-        Post Comment
+        {loading ? 'Posting...' : 'Post Comment'}
       </button>
-    </form>
+    </form >
   );
 };
 

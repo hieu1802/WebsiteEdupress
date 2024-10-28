@@ -5,12 +5,14 @@ import bcrypt from "bcrypt";
 import multer from "multer";
 import { storage } from "../config/cloundinary.js";
 const upload = multer({ storage });
+
 const createComment = async (req, res) => {
   try {
-    let { comment, author, email } = req.body;
+    let { comment, author, email, image } = req.body;
     let courseId = req.params.courseId;
-    const image = req.file ? req.file.path : null;
-
+    // const image = req.file ? req.file.path : null;
+    console.log("Image URL:", image); // Log để kiểm tra đường dẫn ảnh
+    console.log("Request body:", req.body);
     if (!mongoose.Types.ObjectId.isValid(courseId)) {
       return res.status(400).json({ error: "Invalid courseId" });
     }
@@ -19,7 +21,7 @@ const createComment = async (req, res) => {
       comment,
       author,
       email,
-      image,
+      image: image || null,
       date: new Date().toLocaleDateString(),
       isHidden: false
     })

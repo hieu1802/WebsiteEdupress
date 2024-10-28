@@ -134,6 +134,8 @@ const Reviews = ({ reviewsData, fetchComments }) => {
                             ) : (
                                 <span className={styles.commentItem}>{review.comment}</span>
                             )}
+                            {review.image && (<span className='image-comment'><img src={review.image} alt="Comment Image" style={{ marginTop: '10px', display: 'block', maxWidth: '300px', maxHeight: '300px' }} /></span>
+                            )}
                             <div className="comment-actions">
                                 <button className="reply-button"><img src={Reply} />Reply</button>
                             </div>

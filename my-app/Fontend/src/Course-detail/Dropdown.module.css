@@ -100,3 +100,20 @@
 .uploadItem {
     all: unset;
 }
+
+/* Reviews.module.css */
+.closeButton {
+    position: absolute;
+    top: -15px;
+    right: -6px;
+    width: 25px;
+    background: #EAEAEA;
+    border: 1px solid;
+    border-radius: 100%;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    font-weight: bolder;
+    height: fit-content;
+}

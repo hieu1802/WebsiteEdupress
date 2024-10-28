@@ -6,9 +6,12 @@ import {
   updateUserById, deleteComment
 } from '../controllers/userController.js';
 import express from 'express';
+import multer from 'multer';
+import { storage } from '../config/cloundinary.js';
 const router = express.Router();
+const upload = multer({ storage });
 
-router.post('/create-comment/:courseId', createComment)
+router.post('/create-comment/:courseId', upload.single('image'), createComment)
 router.put('/update-comment/:commentId', updateComment);
 router.put('/hide-comment/:commentId', hideComment)
 router.delete('/delete-comment/:commentId', deleteComment)
