@@ -7,9 +7,16 @@ import connect from "./config/db.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import { createDefaultAdmin } from "./controllers/userController.js";
 dotenv.config();
 //connect to DB
-connect();
+connect()
+  .then(() => {
+    console.log("Database connected.");
+    createDefaultAdmin(); // Create default admin account
+  })
+  .catch((error) => console.error("Database connection error:", error));
+
 const app = express();
 app.use(express.json());
 app.use(cors());

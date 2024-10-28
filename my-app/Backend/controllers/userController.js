@@ -23,56 +23,65 @@ const createComment = async (req, res) => {
       email,
       image: image || null,
       date: new Date().toLocaleDateString(),
-      isHidden: false
-    })
+      isHidden: false,
+    });
 
-    const saveComment = await newComment.save()
+    const saveComment = await newComment.save();
     return res.status(201).json(saveComment);
   } catch (error) {
     console.error(error);
-    return res.status(500).send('Có lỗi xảy ra khi comment');
+    return res.status(500).send("Có lỗi xảy ra khi comment");
   }
-}
+};
 const updateComment = async (req, res) => {
   try {
     let { commentId } = req.params; // Lấy ID của comment từ URL
     let { comment } = req.body;
-    const updatedComment = await CommentModel.findByIdAndUpdate(commentId, { comment }, { new: true });
+    const updatedComment = await CommentModel.findByIdAndUpdate(
+      commentId,
+      { comment },
+      { new: true }
+    );
     if (!updatedComment) {
-      return res.status(404).json({ message: 'Comment không tồn tại' });
+      return res.status(404).json({ message: "Comment không tồn tại" });
     }
     return res.json(updatedComment);
   } catch (error) {
-    console.error('Lỗi khi cập nhật comment:', error);
-    return res.status(500).json({ message: 'Có lỗi xảy ra khi cập nhật comment' });
+    console.error("Lỗi khi cập nhật comment:", error);
+    return res
+      .status(500)
+      .json({ message: "Có lỗi xảy ra khi cập nhật comment" });
   }
-
-}
+};
 const hideComment = async (req, res) => {
   try {
     const { commentId } = req.params;
-    console.log('Hiding comment with ID:', commentId);
+    console.log("Hiding comment with ID:", commentId);
     // Kiểm tra nếu commentId có giá trị hợp lệ
     if (!commentId) {
-      return res.status(400).json({ message: 'commentId không hợp lệ' });
+      return res.status(400).json({ message: "commentId không hợp lệ" });
     }
 
     // Kiểm tra xem commentId có phải là ObjectId hợp lệ không
     if (!mongoose.Types.ObjectId.isValid(commentId)) {
-      return res.status(400).json({ message: 'commentId không hợp lệ' });
+      return res.status(400).json({ message: "commentId không hợp lệ" });
     }
-    const updateComment = await CommentModel.findByIdAndUpdate(commentId, { isHidden: true }, { new: true })
+    const updateComment = await CommentModel.findByIdAndUpdate(
+      commentId,
+      { isHidden: true },
+      { new: true }
+    );
     if (!updateComment) {
-      return res.status(404).json({ message: 'Comment không tồn tại' });
+      return res.status(404).json({ message: "Comment không tồn tại" });
     }
-    console.log('Comment updated:', updateComment); // Log kết quả cập nhật
+    console.log("Comment updated:", updateComment); // Log kết quả cập nhật
 
     return res.json(updateComment);
   } catch (error) {
-    console.error('Lỗi khi ẩn comment:', error);
-    return res.status(500).json({ message: 'Có lỗi xảy ra khi ẩn comment' });
+    console.error("Lỗi khi ẩn comment:", error);
+    return res.status(500).json({ message: "Có lỗi xảy ra khi ẩn comment" });
   }
-}
+};
 const deleteComment = async (req, res) => {
   try {
     const { commentId } = req.params;
@@ -81,18 +90,15 @@ const deleteComment = async (req, res) => {
     const deletedComment = await CommentModel.findByIdAndDelete(commentId);
 
     if (!deletedComment) {
-      return res.status(404).json({ message: 'Comment not found' });
+      return res.status(404).json({ message: "Comment not found" });
     }
 
-    res.status(200).json({ message: 'Comment deleted successfully' });
+    res.status(200).json({ message: "Comment deleted successfully" });
   } catch (error) {
-    console.error('Error deleting comment:', error);
-    res.status(500).json({ message: 'Error deleting comment' });
+    console.error("Error deleting comment:", error);
+    res.status(500).json({ message: "Error deleting comment" });
   }
 };
-
-
-
 
 const getAllUsers = async (req, res) => {
   try {
@@ -140,8 +146,12 @@ const deleteUserById = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
-    const { userId, oldPassword, newPassword } = req.body;
-    const user = await User.findById(userId);
+    const { userNameOrEmail, oldPassword, newPassword } = req.body;
+
+    const user = await User.findOne({
+      $or: [{ userName: userNameOrEmail }, { email: userNameOrEmail }],
+    });
+
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const validPassword = await bcrypt.compare(oldPassword, user.password);
@@ -158,11 +168,78 @@ const changePassword = async (req, res) => {
   }
 };
 
+const requestPasswordReset = async (req, res) => {
+  const { userNameOrEmail } = req.body;
+
+  try {
+    const user = await User.findOne({
+      $or: [{ email: userNameOrEmail }, { userName: userNameOrEmail }],
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ message: "User found, proceed with reset" });
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  const { userNameOrEmail, newPassword } = req.body;
+
+  try {
+    const user = await User.findOne({
+      $or: [{ email: userNameOrEmail }, { userName: userNameOrEmail }],
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hashedPassword;
+    await user.save();
+
+    return res.status(200).json({ message: "Password reset successful" });
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+
+const createDefaultAdmin = async () => {
+  const adminAccountExists = await User.findOne({ userName: "admin" });
+
+  if (!adminAccountExists) {
+    const adminAccount = new User({
+      email: "admin@example.com",
+      userName: "admin",
+      password: "admin",
+      role: "admin",
+    });
+
+    const salt = await bcrypt.genSalt(10);
+    adminAccount.password = await bcrypt.hash(adminAccount.password, salt);
+
+    await adminAccount.save();
+    console.log("Default admin account created.");
+  }
+};
+
 export {
   createComment,
   getAllUsers,
   getUserById,
   updateUserById,
   deleteUserById,
-  changePassword, updateComment, hideComment, deleteComment
+  changePassword,
+  updateComment,
+  hideComment,
+  deleteComment,
+  requestPasswordReset,
+  resetPassword,
+  createDefaultAdmin,
 };

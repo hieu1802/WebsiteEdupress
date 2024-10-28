@@ -37,26 +37,49 @@ function InfoCustomer() {
     setUserInfo((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const buttonClicked = e.nativeEvent.submitter.name;
 
     if (buttonClicked === "updateInfo") {
-      const updatedAccounts = JSON.parse(localStorage.getItem("accounts")).map(
-        (account) =>
-          account.email === userInfo.email
-            ? { ...account, ...userInfo }
-            : account
-      );
-      localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-      localStorage.setItem("loggedInUser", JSON.stringify(userInfo));
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/v1/user/update-user/${userInfo._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          }
+        );
 
-      setModal({
-        isOpen: true,
-        title: "Success",
-        message: "Information updated successfully!",
-      });
+        if (response.ok) {
+          const updatedUser = await response.json();
+
+          localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+
+          setModal({
+            isOpen: true,
+            title: "Success",
+            message: "Information updated successfully!",
+          });
+        } else {
+          setModal({
+            isOpen: true,
+            title: "Error",
+            message: "Failed to update information.",
+          });
+        }
+      } catch (error) {
+        console.error("Error updating user information:", error);
+        setModal({
+          isOpen: true,
+          title: "Error",
+          message: "An error occurred while updating information.",
+        });
+      }
     } else if (buttonClicked === "deleteAccount") {
       navigate("/delete-account");
     }
