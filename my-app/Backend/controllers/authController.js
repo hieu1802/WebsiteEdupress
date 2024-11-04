@@ -31,8 +31,15 @@ const getCourse = async (req, res) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { email, userName, password, dateOfBirth, phoneNumber, address } =
-      req.body;
+    const {
+      email,
+      userName,
+      password,
+      dateOfBirth,
+      phoneNumber,
+      address,
+      role,
+    } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -46,6 +53,7 @@ const registerUser = async (req, res) => {
       dateOfBirth,
       phoneNumber,
       address,
+      role,
     });
 
     const salt = await bcrypt.genSalt(10);

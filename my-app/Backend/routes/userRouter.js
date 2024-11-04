@@ -6,13 +6,14 @@ import {
   deleteUserById,
   getAllUsers,
   getUserById,
-  updateUserById, deleteComment,
+  updateUserById,
+  deleteComment,
   requestPasswordReset,
   resetPassword,
-} from '../controllers/userController.js';
+} from "../controllers/userController.js";
 
-import multer from 'multer';
-import { storage } from '../config/cloundinary.js';
+import multer from "multer";
+import { storage } from "../config/cloundinary.js";
 //   updateUserById,
 //   deleteComment,
 //   requestPasswordReset,
@@ -22,10 +23,10 @@ import express from "express";
 const router = express.Router();
 const upload = multer({ storage });
 
-router.post('/create-comment/:courseId', upload.single('image'), createComment)
-router.put('/update-comment/:commentId', updateComment);
-router.put('/hide-comment/:commentId', hideComment)
-router.delete('/delete-comment/:commentId', deleteComment)
+router.post("/create-comment/:courseId", upload.single("image"), createComment);
+router.put("/update-comment/:commentId", updateComment);
+router.put("/hide-comment/:commentId", hideComment);
+router.delete("/delete-comment/:commentId", deleteComment);
 // import {
 //   changePassword,
 //   createComment,
