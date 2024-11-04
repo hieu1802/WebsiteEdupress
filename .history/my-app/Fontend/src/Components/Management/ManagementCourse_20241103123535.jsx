@@ -1,0 +1,71 @@
+import React, { useEffect, useState } from 'react';
+import {
+  AiFillSignal,
+  AiOutlineUserAdd,
+  AiOutlineClockCircle,
+  AiFillBook
+} from "react-icons/ai";
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+function ManagementCourse() {
+  const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/v1/courses')
+            .then(response => {
+                setCourses(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the courses!', error);
+            });
+    }, []);
+  return (
+    <div className='managementCourseContainer'>
+        <div className='courseTitle'>
+            <h3>Danh Sách Khóa Học</h3>
+            <div>
+              <button>Hiển thị tất cả</button>
+              <button>Thêm khóa học</button>
+            </div>
+        </div>
+        <div className='courseMain'>
+        <div className='boxProduct'>
+                <h2>All Courses</h2>
+                {courses.map((items) => (
+                    <div className='boxContent' id={items._id}>
+                        <div className='boxImg'>
+                            <img src={`http://localhost:8080/images/${items.img}`} />
+                        </div>
+                        <div className='boxTexT'>
+                            <div className='text'>
+                                <h4>by <span>{items.author}</span></h4>
+                                <h5>{items.courseName}</h5>
+                                <div className='iconsValue'>
+                                    <span><AiOutlineClockCircle className='icons' /> {items.time} Weeks</span>
+                                    <span><AiOutlineUserAdd className='icons' /> {items.student}</span>
+                                    <span><AiFillSignal className='icons' /> All Lv</span>
+                                    <span><AiFillBook className='icons' /> {items.lessons} Lessons</span>
+
+                                </div>
+                            </div>
+                            <div className='boxPrice'>
+                                <div className='priceBox'>
+                                    <p>{items.price}</p>
+                                    <span>{items.sale}</span>
+                                </div>
+                                <Link to={`/Coursedetail/${items._id}`} state={{ course: items }} className='btnClick'>
+                                    <p>Mua ngay</p>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default ManagementCourse

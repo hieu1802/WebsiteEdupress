@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.managementContainer{
+    width: 1175px;
+    height: 100%;
+    margin-left: 20%;
+    display: flex;
+    margin-top: 30px;
+    border-radius: 25px;
+}
+
+.managementCourseContainer{
+    width: 550px;
+    height: 1500px;
+    border-radius: 25px;
+    border: 1px solid black;
+   
+}
+
+.courseTitle{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.courseTitle > h3{
+    font-size: 20px;
+}
+
+.courseMain{
+    width: 100%;
+    height: 850px;
+    margin-top: 20px;
+}
+
+.boxCourse{
+    width: 500px;
+    height: 170px;
+    margin-top: 15px;
+    background-color:beige
+}
+
+.boxInf{
+    width: 100%;
+    height: 30px;
+    display: flex;
+}
+
+.boxInf > h4{
+    margin-left: 10px;
+    margin-right: 5px;
+}
