@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AdminPage.css";
+import { Link } from "react-router-dom";
 
 function AdminPage() {
   const [accounts, setAccounts] = useState([]);
@@ -142,7 +143,7 @@ function AdminPage() {
   return (
     <div className="admin">
       <h1>Admin Page</h1>
-
+      <Link to={"/AdminManagement"}>AdminManagement </Link>
       <h2>All Registered Accounts</h2>
       <table className="listAcc">
         <thead>
