@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AdminPage.css";
+import { Link } from "react-router-dom";
 
 function AdminPage() {
   const [accounts, setAccounts] = useState([]);
@@ -15,7 +16,7 @@ function AdminPage() {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/v1/auth/login"); //  or /admin-account
+        const response = await fetch("http://localhost:8080/api/v1/user/");
         const data = await response.json();
         setAccounts(data);
       } catch (error) {
@@ -24,28 +25,53 @@ function AdminPage() {
     };
 
     fetchAccounts();
-  }, []);
+  }, [accounts]);
 
-  const handleAddAccount = () => {
-    const updatedAccounts = [...accounts, newAccount];
-    setAccounts(updatedAccounts);
-    localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-    setNewAccount({ email: "", userName: "", password: "", role: "user" });
-  };
+  const handleAddAccount = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8080/api/v1/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newAccount),
+        }
+      );
 
-  const handleDeleteAccount = (userName) => {
-    if (userName === "admin") {
-      alert("Cannot delete the admin account");
-      return;
+      if (response.ok) {
+        const createdAccount = await response.json();
+        setAccounts([...accounts, createdAccount]);
+        setNewAccount({ email: "", userName: "", password: "", role: "user" });
+      } else {
+        console.error("Failed to add account:", await response.text());
+      }
+    } catch (error) {
+      console.error("Error adding account:", error);
     }
-    const updatedAccounts = accounts.filter(
-      (account) => account.userName !== userName
-    );
-    setAccounts(updatedAccounts);
-    localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
   };
 
-  const handleUpdateAccount = () => {
+  const handleDeleteAccount = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/user/delete-user/${userId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        setAccounts(accounts.filter((account) => account._id !== userId));
+      } else {
+        console.error("Failed to delete account:", await response.text());
+      }
+    } catch (error) {
+      console.error("Error deleting account:", error);
+    }
+  };
+
+  const handleUpdateAccount = async () => {
     const isDuplicateUserName = accounts.some(
       (account) =>
         account.userName === editingAccount.userName &&
@@ -57,33 +83,67 @@ function AdminPage() {
       return;
     }
 
-    const updatedAccounts = accounts.map((account) =>
-      account.userName === editingAccount.originalUserName
-        ? editingAccount
-        : account
-    );
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/user/update-user/${editingAccount._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editingAccount),
+        }
+      );
 
-    setAccounts(updatedAccounts);
-    localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-    setEditingAccount(null);
+      if (response.ok) {
+        setAccounts(
+          accounts.map((account) =>
+            account._id === editingAccount._id ? editingAccount : account
+          )
+        );
+        setEditingAccount(null);
+      } else {
+        console.error("Failed to update account:", await response.text());
+      }
+    } catch (error) {
+      console.error("Error updating account:", error);
+    }
   };
 
-  const handleRoleChange = (userName, role) => {
-    if (userName === "admin") {
-      alert("Cannot change the role of the admin account");
-      return;
+  const handleRoleChange = async (userId, role) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/user/update-user/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ role }),
+        }
+      );
+
+      if (response.ok) {
+        const updatedAccount = await response.json(); // Get the updated account data from the response
+
+        // Update the accounts state with the updated account from the server
+        setAccounts(
+          accounts.map((account) =>
+            account._id === userId ? updatedAccount : account
+          )
+        );
+      } else {
+        console.error("Failed to update role:", await response.text());
+      }
+    } catch (error) {
+      console.error("Error updating role:", error);
     }
-    const updatedAccounts = accounts.map((account) =>
-      account.userName === userName ? { ...account, role } : account
-    );
-    setAccounts(updatedAccounts);
-    localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
   };
 
   return (
     <div className="admin">
       <h1>Admin Page</h1>
-
+      <Link to={"/AdminManagement"}>AdminManagement </Link>
       <h2>All Registered Accounts</h2>
       <table className="listAcc">
         <thead>
@@ -103,7 +163,7 @@ function AdminPage() {
                 <select
                   value={account.role}
                   onChange={(e) =>
-                    handleRoleChange(account.userName, e.target.value)
+                    handleRoleChange(account._id, e.target.value)
                   }
                   disabled={account.userName === "admin"}
                 >
@@ -123,7 +183,7 @@ function AdminPage() {
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDeleteAccount(account.userName)}
+                  onClick={() => handleDeleteAccount(account._id)}
                   disabled={account.userName === "admin"}
                 >
                   Delete
