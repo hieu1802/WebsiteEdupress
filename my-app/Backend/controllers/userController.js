@@ -37,22 +37,20 @@ const updateComment = async (req, res) => {
   try {
     let { commentId } = req.params; // Lấy ID của comment từ URL
     let { comment } = req.body;
-    const userId = req.userId;
-    const existingComment = await CommentModel.findById(commentId);
-    if (!existingComment) {
+    const updatedComment = await CommentModel.findByIdAndUpdate(
+      commentId,
+      { comment },
+      { new: true }
+    );
+    if (!updatedComment) {
       return res.status(404).json({ message: "Comment không tồn tại" });
     }
-    if (existingComment.userId.toString() !== userId) {
-      return res.status(403).json({ message: "Không có quyền cập nhật comment này" });
-    }
-
-    // Cập nhật comment
-    existingComment.comment = comment;
-    await existingComment.save();
-    return res.json(existingComment);
+    return res.json(updatedComment);
   } catch (error) {
     console.error("Lỗi khi cập nhật comment:", error);
-    return res.status(500).json({ message: "Có lỗi xảy ra khi cập nhật comment" });
+    return res
+      .status(500)
+      .json({ message: "Có lỗi xảy ra khi cập nhật comment" });
   }
 };
 const hideComment = async (req, res) => {

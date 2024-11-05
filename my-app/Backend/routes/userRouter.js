@@ -28,7 +28,7 @@ const upload = multer({ storage });
 
 router.post('/payment', createMomoPayment)
 router.post('/create-comment/:courseId', upload.single('image'), createComment)
-router.put('/update-comment/:commentId', authenticateUser, updateComment);
+router.put('/update-comment/:commentId', updateComment);
 router.put('/hide-comment/:commentId', hideComment)
 router.delete('/delete-comment/:commentId', deleteComment)
 
