@@ -2,7 +2,9 @@ import CommentModel from "../models/comment.js";
 import Course from "../models/Course.js";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 const viewComments = async (req, res) => {
   try {
     let courseId = req.params.courseId;
@@ -69,8 +71,8 @@ const loginUser = async (req, res) => {
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword)
       return res.status(400).json({ message: "Invalid password" });
-
-    res.status(200).json({ message: "Login successful", user });
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    res.status(200).json({ message: "Login successful", user, token });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

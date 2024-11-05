@@ -34,6 +34,7 @@ function Login() {
       });
 
       const data = await response.json();
+      const token = data.token;;
 
       if (response.ok) {
         console.log("Login successful", data);
@@ -42,7 +43,7 @@ function Login() {
           title: "Success",
           message: "Login successful!",
         });
-
+        localStorage.setItem("token", token);
         localStorage.setItem("loggedInUser", JSON.stringify(data.user));
 
         if (rememberMe) {

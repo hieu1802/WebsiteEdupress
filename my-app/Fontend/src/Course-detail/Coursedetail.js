@@ -42,21 +42,9 @@ const CourseDetail = () => {
   }, [id])
 
   useEffect(() => {
-    // const fetchComments = async () => {
-    //   try {
-    //     const response = await axios.get(`http://localhost:8080/api/v1/auth/view-comments/${id}?isHidden=false`)
-    //     setReviewsData(response.data)
-    //   } catch (error) {
-    //     console.error('Lỗi khi lấy comments:', error);
-    //   }
-    // }
     fetchComments();
   }, [id])
-  // useEffect(() => {
-  //   const savedComments = JSON.parse(localStorage.getItem("comments")) || [];
-  //   setReviewsData(savedComments);
-  // }, []);
-
+  
   const addComment = (createdComment) => {
     setReviewsData((prevReviews) => [...prevReviews.filter((review) => !review.isHidden), createdComment]);
   };

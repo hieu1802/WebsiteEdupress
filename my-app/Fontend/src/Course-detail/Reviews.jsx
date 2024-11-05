@@ -7,12 +7,24 @@ import styles from './Dropdown.module.css';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { jwtDecode } from 'jwt-decode';
+
+
+
+
 const Reviews = ({ reviewsData, fetchComments }) => {
     const [reviews, setReviews] = useState(reviewsData);
     const [editingCommentId, setEditingCommentId] = useState(null); // Trạng thái chỉnh sửa
     const [editedComment, setEditedComment] = useState(''); // Lưu nội dung bình luận chỉnh sửa
+
+
+    const loggedInUserName = localStorage.getItem("loggedInUser"); // Thay đổi key nếu cần
+    const accounts = loggedInUserName ? JSON.parse(loggedInUserName) : null;
+    console.log(accounts ? accounts.userName : "No username available");
+
     useEffect(() => {
         setReviews(reviewsData);
+        console.log(reviewsData);
     }, [reviewsData]);
 
     // Hàm kích hoạt chế độ chỉnh sửa
@@ -142,7 +154,10 @@ const Reviews = ({ reviewsData, fetchComments }) => {
                             <div className='dropdowntailwinds'><Dropdown
                                 onEdit={() => handleEditClick(review._id, review.comment)}
                                 onHide={() => handleHideClick(review._id)}
-                                onDelete={() => handleDeleteClick(review._id)} /></div>
+                                onDelete={() => handleDeleteClick(review._id)}
+                                showEdit={accounts && review.author === accounts.userName}
+                                showDelete={accounts && review.author === accounts.userName}
+                            /></div>
 
                         </div>
                     ))}

@@ -66,7 +66,8 @@ const CommentForm = ({ addComment, courseId }) => {
       console.log('New Review:', newReview);
 
 
-      const response = await axios.post(`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
+      const response = await axios.post
+      (`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
       const createdComment = response.data
       addComment(createdComment);
       setComment("");
