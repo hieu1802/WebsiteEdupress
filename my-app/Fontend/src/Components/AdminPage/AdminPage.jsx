@@ -124,9 +124,8 @@ function AdminPage() {
       );
 
       if (response.ok) {
-        const updatedAccount = await response.json(); // Get the updated account data from the response
+        const updatedAccount = await response.json();
 
-        // Update the accounts state with the updated account from the server
         setAccounts(
           accounts.map((account) =>
             account._id === userId ? updatedAccount : account
@@ -143,7 +142,9 @@ function AdminPage() {
   return (
     <div className="admin">
       <h1>Admin Page</h1>
-      <Link to={"/AdminManagement"}>AdminManagement </Link>
+      <Link className="adminManagement" to={"/AdminManagement"}>
+        Admin Management Page{" "}
+      </Link>
       <h2>All Registered Accounts</h2>
       <table className="listAcc">
         <thead>

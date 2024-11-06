@@ -4,6 +4,7 @@
 
   h1 {
     color: #ff7822;
+    margin-bottom: 30px;
   }
 
   h2 {
@@ -144,4 +145,15 @@ form {
     padding: 10px 15px;
     font-size: 14px;
   }
+}
+
+.adminManagement {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ff7822;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
 }
