@@ -153,12 +153,7 @@
     width: 90%;
     height: 350px;
     margin-left: 10px;
-    overflow-y: scroll;
 }
-
-.boxRecent::-webkit-scrollbar {
-    display: none; /* Ẩn thanh cuộn */
-  }
 
 .boxRecent > h4{
     font-family: Exo;

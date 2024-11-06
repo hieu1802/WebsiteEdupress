@@ -41,16 +41,6 @@ export const getBlogById = async (req, res) => {
     }
 };
 
-// Cập nhật blog
-export const updateBlog = async (req, res) => {
-    try {
-        const blog = await BlogData.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!blog) return res.status(404).json({ error: "Blog không tồn tại" });
-        res.status(200).json(blog);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
 
 // Xóa blog
 export const deleteBlog = async (req, res) => {

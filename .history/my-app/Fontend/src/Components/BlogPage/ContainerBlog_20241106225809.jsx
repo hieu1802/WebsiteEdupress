@@ -47,24 +47,6 @@ function ContainerBlog() {
       });
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/v1/blogUser/${id}`
-      );
-      console.log(response.data.message);
-      alert('Xóa thành công')
-
-      setBlog((prevCourses) =>
-        prevCourses.filter((course) => course._id !== id)
-      );
-      window.location.reload()
-    } catch (error) {
-      console.error("Error deleting course:", error);
-    }
-  };
-
-
 
   return (
     <div className="blogContainer">
@@ -116,7 +98,7 @@ function ContainerBlog() {
             <p>15</p>
           </div>
         </div>
-        <RecentPosts posts={Blog} onSelectPost={handleSelectPost}  handleDelete={handleDelete}/>
+        <RecentPosts posts={Blog} onSelectPost={handleSelectPost} />
 
         <div className="tags">
           <h4>Tags</h4>

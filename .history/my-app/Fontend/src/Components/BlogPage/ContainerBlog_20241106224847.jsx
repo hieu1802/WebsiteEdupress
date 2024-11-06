@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import img12 from "../img/img12.png";
 import axios from "axios";
 import RecentPosts from "./RecentPosts";
@@ -17,7 +17,7 @@ function ContainerBlog() {
   const [Blog, setBlog] = useState([]);
 
   const handleSelectPost = (image, title, content) => {
-    setMainImage(`http://localhost:8080/images/${image}`);
+    setMainImage(image);
     setMainTitle(title);
     setMainContent(content);
   };
@@ -46,24 +46,6 @@ function ContainerBlog() {
         console.error("There was an error fetching the courses!", error);
       });
   }, []);
-
-  const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/v1/blogUser/${id}`
-      );
-      console.log(response.data.message);
-      alert('Xóa thành công')
-
-      setBlog((prevCourses) =>
-        prevCourses.filter((course) => course._id !== id)
-      );
-      window.location.reload()
-    } catch (error) {
-      console.error("Error deleting course:", error);
-    }
-  };
-
 
 
   return (
@@ -116,7 +98,7 @@ function ContainerBlog() {
             <p>15</p>
           </div>
         </div>
-        <RecentPosts posts={Blog} onSelectPost={handleSelectPost}  handleDelete={handleDelete}/>
+        <RecentPosts posts={Blog} onSelectPost={handleSelectPost} />
 
         <div className="tags">
           <h4>Tags</h4>

@@ -1,10 +1,7 @@
 import React from 'react'
 
 
-
-const RecentPosts = ({ posts, onSelectPost,handleDelete}) => {
-
-  
+const RecentPosts = ({ posts, onSelectPost }) => {
 
   
   return (
@@ -13,11 +10,10 @@ const RecentPosts = ({ posts, onSelectPost,handleDelete}) => {
         {posts.map(post =>(
             <div className='articles' key={post.id} onClick={() => onSelectPost(post.image, post.title, post.content)}>
                 <div className='articlesImg'>
-                    <img src={`http://localhost:8080/images/${post.image}`} />
+                    <img src={'http://localhost:8080/images/${post.img}'} />
                 </div>
                 <div className='articlesContents'>
                     <p>{post.title}</p>
-                    <p style={{color:"red"}} onClick={() => handleDelete(post._id)} >Xóa bài viết</p>
                 </div>
         </div>
         ))}

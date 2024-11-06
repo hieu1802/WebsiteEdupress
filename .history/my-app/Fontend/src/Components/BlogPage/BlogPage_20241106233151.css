@@ -156,9 +156,7 @@
     overflow-y: scroll;
 }
 
-.boxRecent::-webkit-scrollbar {
-    display: none; /* Ẩn thanh cuộn */
-  }
+
 
 .boxRecent > h4{
     font-family: Exo;

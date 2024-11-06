@@ -36,7 +36,7 @@ export const FormAddBlog = () => {
 
     return (
       <div className="content">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="formBlog">
           <div>
             <label htmlFor="title" className="title">Tiêu đề:</label>
             <input

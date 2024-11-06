@@ -1,10 +1,7 @@
 import React from 'react'
 
 
-
-const RecentPosts = ({ posts, onSelectPost,handleDelete}) => {
-
-  
+const RecentPosts = ({ posts, onSelectPost }) => {
 
   
   return (
@@ -17,7 +14,7 @@ const RecentPosts = ({ posts, onSelectPost,handleDelete}) => {
                 </div>
                 <div className='articlesContents'>
                     <p>{post.title}</p>
-                    <p style={{color:"red"}} onClick={() => handleDelete(post._id)} >Xóa bài viết</p>
+                    <p style={{color:"red"}}>Xóa bài viết</p>
                 </div>
         </div>
         ))}

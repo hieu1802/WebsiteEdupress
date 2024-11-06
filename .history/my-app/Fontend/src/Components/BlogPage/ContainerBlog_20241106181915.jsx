@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import img12 from "../img/img12.png";
-import axios from "axios";
+
 import RecentPosts from "./RecentPosts";
 import { recentPosts } from "../data/blogData";
 import FormAddBlog from "./FormAddBlog";
@@ -14,19 +14,13 @@ function ContainerBlog() {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis faucibus odio arcu duis dui, adipiscing facilisis. Urna, donec turpis ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis faucibus odio Varius tellus justo odio parturient mauris curabitur lorem in. Pulvinar sit u arcu duis dui egestas volutpat. Quisque nec non amet quis"
   );
   const [isOpen, setIsOpen] = useState(false);
-  const [Blog, setBlog] = useState([]);
 
   const handleSelectPost = (image, title, content) => {
-    setMainImage(`http://localhost:8080/images/${image}`);
+    setMainImage(image);
     setMainTitle(title);
     setMainContent(content);
   };
 
-  const handleAddPost = (newPost) => {
-    setMainTitle(newPost.title);
-    setMainContent(newPost.content);
-    setMainImage(newPost.image);
-  };
   const handleAddPostClick = () => {
     setIsOpen(true);
   };
@@ -34,37 +28,6 @@ function ContainerBlog() {
   const handleCloseForm = () => {
     setIsOpen(false);
   };
-
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/v1/blogUser/")
-      .then((response) => {
-        setBlog(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the courses!", error);
-      });
-  }, []);
-
-  const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/v1/blogUser/${id}`
-      );
-      console.log(response.data.message);
-      alert('Xóa thành công')
-
-      setBlog((prevCourses) =>
-        prevCourses.filter((course) => course._id !== id)
-      );
-      window.location.reload()
-    } catch (error) {
-      console.error("Error deleting course:", error);
-    }
-  };
-
-
 
   return (
     <div className="blogContainer">
@@ -116,7 +79,7 @@ function ContainerBlog() {
             <p>15</p>
           </div>
         </div>
-        <RecentPosts posts={Blog} onSelectPost={handleSelectPost}  handleDelete={handleDelete}/>
+        <RecentPosts posts={recentPosts} onSelectPost={handleSelectPost} />
 
         <div className="tags">
           <h4>Tags</h4>

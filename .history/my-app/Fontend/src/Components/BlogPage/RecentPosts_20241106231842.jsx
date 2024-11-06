@@ -1,10 +1,24 @@
 import React from 'react'
+import axios from "axios";
 
 
+const RecentPosts = ({ posts, onSelectPost }) => {
 
-const RecentPosts = ({ posts, onSelectPost,handleDelete}) => {
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/v1/blogUser/${id}`
+      );
+      console.log(response.data.message);
 
-  
+      setBlog((prevCourses) =>
+        prevCourses.filter((course) => course._id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting course:", error);
+    }
+  };
+
 
   
   return (
