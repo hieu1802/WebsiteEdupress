@@ -106,7 +106,7 @@ function ManagementCourse() {
               style={{
                 position: "absolute",
                 top: "10%",
-                left: "40%",
+                left: "39%",
                 zIndex: 10,
               }}
             >

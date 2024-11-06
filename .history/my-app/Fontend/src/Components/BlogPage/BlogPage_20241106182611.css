@@ -153,12 +153,7 @@
     width: 90%;
     height: 350px;
     margin-left: 10px;
-    overflow-y: scroll;
 }
-
-.boxRecent::-webkit-scrollbar {
-    display: none; /* Ẩn thanh cuộn */
-  }
 
 .boxRecent > h4{
     font-family: Exo;
@@ -200,6 +195,7 @@
     line-height: 24px;
     text-align: left;
     margin-left: 5px;
+    margin-top: 5px;
 }
 
 .tags{
@@ -233,8 +229,8 @@
 
 .addPostForm {
     position: absolute;
-    top: 10%;
-    left: 45%;
+    top: 20%;
+    left: 50%;
     transform: translate(-50%, 0);
     background-color: white;
     padding: 20px;
@@ -261,9 +257,9 @@
     margin-top: 5px;
   }
 
-  .textBlog{
-    width: 100% !important;
-    height: 250px !important;
+  .addPostForm textarea{
+    width: 100%;
+    height: 300px;
   }
   
   .addPostForm button {

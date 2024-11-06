@@ -156,7 +156,7 @@
     overflow-y: scroll;
 }
 
-.boxRecent::-webkit-scrollbar {
+.scroll-hidden::-webkit-scrollbar {
     display: none; /* Ẩn thanh cuộn */
   }
 

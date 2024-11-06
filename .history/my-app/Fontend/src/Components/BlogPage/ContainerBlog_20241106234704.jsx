@@ -58,7 +58,6 @@ function ContainerBlog() {
       setBlog((prevCourses) =>
         prevCourses.filter((course) => course._id !== id)
       );
-      window.location.reload()
     } catch (error) {
       console.error("Error deleting course:", error);
     }
