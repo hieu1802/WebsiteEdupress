@@ -28,7 +28,12 @@ function ContainerBlog() {
     setMainImage(newPost.image);
   };
   const handleAddPostClick = () => {
-    setIsOpen(true);
+    const account = localStorage.getItem("loggedInUser");
+    if (!account) {
+      alert("Bạn cần phải đăng nhập để thêm bài viết");
+    } else {
+      setIsOpen(true);
+    }
   };
 
   const handleCloseForm = () => {
@@ -116,7 +121,7 @@ function ContainerBlog() {
             <p>15</p>
           </div>
         </div>
-        <RecentPosts posts={Blog} onSelectPost={handleSelectPost}  handleDelete={handleDelete}/>
+        <RecentPosts posts={Blog} onSelectPost={handleSelectPost} handleDelete={handleDelete} />
 
         <div className="tags">
           <h4>Tags</h4>
