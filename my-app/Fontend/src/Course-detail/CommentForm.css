@@ -68,6 +68,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 30%;
+    position: relative;
 }
 
 .submit-button:hover {
@@ -79,4 +80,22 @@
     font-size: 14px;
     padding-bottom: 15px;
 
+}
+
+.wave-text span {
+    display: inline-block;
+    animation: wave 1s infinite;
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+        /* Độ cao nhấp nhô */
+    }
 }

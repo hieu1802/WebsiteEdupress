@@ -29,6 +29,13 @@ const CommentForm = ({ addComment, courseId }) => {
       console.log('Image selected:', file);
     }
   };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();  // Ngăn xuống dòng trong textarea
+      handleSubmit();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!courseId) {
@@ -67,7 +74,7 @@ const CommentForm = ({ addComment, courseId }) => {
 
 
       const response = await axios.post
-      (`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
+        (`http://localhost:8080/api/v1/user/create-comment/${courseId}`, newReview)
       const createdComment = response.data
       addComment(createdComment);
       setComment("");
@@ -111,6 +118,7 @@ const CommentForm = ({ addComment, courseId }) => {
           placeholder="Comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
+
           required
         ></textarea>
         <label htmlFor="input-file" style={{ cursor: 'pointer' }}>
@@ -155,7 +163,17 @@ const CommentForm = ({ addComment, courseId }) => {
         )
       }
       <button type="submit" className="submit-button">
-        {loading ? 'Posting...' : 'Post Comment'}
+        {loading ? (
+          <span className="wave-text">
+            {'Posting...'.split('').map((char, index) => (
+              <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
+                {char}
+              </span>
+            ))}
+          </span>
+        ) : (
+          'Post Comment'
+        )}
       </button>
     </form >
   );
